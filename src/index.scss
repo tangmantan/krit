@@ -1,6 +1,37 @@
 // Importing fonts
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
+
+@font-face {
+  font-family: "阿里妈妈东方大楷 Regular";
+  src: url("//at.alicdn.com/wf/webfont/uoyBX1BZj3Nf/Lj5rTcgQ2Wxv.woff2") format("woff2"),
+  url("//at.alicdn.com/wf/webfont/uoyBX1BZj3Nf/0KF4nWDM887u.woff") format("woff");
+  font-variation-settings: normal;
+  font-display: swap;
+}
+
+.webfont {
+  font-family: "阿里妈妈东方大楷 Regular";
+  font-variation-settings: normal; /* Chrome 140 以下版本需要 */
+}
+
+@font-face {
+  font-family: "得意黑 斜体";
+  font-weight: 400;
+  src: url("//at.alicdn.com/wf/webfont/uoyBX1BZj3Nf/srcpr0Da8Qgo.woff2") format("woff2"),
+  url("//at.alicdn.com/wf/webfont/uoyBX1BZj3Nf/HXn7tsWHydQ9.woff") format("woff");
+  font-variation-settings: normal;
+  font-display: swap;
+}
+
+.webfont {
+  font-family: "得意黑 斜体";
+  font-variation-settings: normal; /* Chrome 140 以下版本需要 */
+}
+
+
+
+
 // Variables for light theme
 :root {
     --bg-primary: #fafafa;

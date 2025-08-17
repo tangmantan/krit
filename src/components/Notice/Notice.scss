@@ -1,4 +1,4 @@
-.free-palestine {
+.notice {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +14,7 @@
     opacity: 0;
     transition: 1s;
 
-    .free-palestine-content {
+    .notice-content {
       transform: translateY(-10em);
       transition: 1s;
     }
@@ -33,7 +33,7 @@
       text-transform: uppercase;
       font-size: 5vw;
       line-height: 6vw;
-      animation: freePalestine 20s infinite ease-in-out;
+      animation: notice 20s infinite ease-in-out;
 
       span {
         font-size: 10vw;
@@ -47,7 +47,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .free-palestine {
+  .notice {
     flex-direction: column;
 
     &-content {
@@ -57,7 +57,7 @@
   }
 }
 
-@keyframes freePalestine {
+@keyframes notice {
   0%,
   100% {
     transform: translateY(0.2em);

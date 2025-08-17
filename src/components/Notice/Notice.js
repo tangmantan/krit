@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { ChevronRight, Description, PlayArrow } from '@material-ui/icons';
 import CircleButton from '../CircleButton/CircleButton';
 import { Icons } from '../../config/icons';
-import './FreePalestine.scss';
+import './Notice.scss';
 
-class FreePalestine extends Component {
+class Notice extends Component {
     constructor() {
         super();
         this.state = { isHiding: false, hidden: false };
@@ -13,7 +13,7 @@ class FreePalestine extends Component {
 
     render() {
         const wrapperClassNames = [
-            'free-palestine',
+            'notice',
             this.state.isHiding && 'is-hiding'
         ].filter(className => className).join(' ');;
 
@@ -23,20 +23,20 @@ class FreePalestine extends Component {
 
         return (
             <div className={wrapperClassNames}>
-                <div className="free-palestine-content">
-                    <h1><span>Free</span><br />Palestine</h1>
-                    <CircleButton link="https://twitter.com/hashtag/FreePalestine" tooltip="#FreePalestine on Twitter">
+                <div className="notice-content">
+                    <h1><span>重要通知</span><br />这是一个</h1>
+                    {/* <CircleButton link="https://tanmantang.com" tooltip="">
                         {Icons['twitter']}
                     </CircleButton>
-                    <CircleButton link="http://facebook.com/hashtag/FreePalestine" tooltip="#FreePalestine on Facebook">
+                    <CircleButton link="https://tanmantang.com" tooltip="">
                         {Icons['facebook']}
                     </CircleButton>
-                    <CircleButton link="https://www.google.com/search?q=palestine&amp;tbm=nws" tooltip="Latest news">
+                    <CircleButton link="https://tanmantang.com" tooltip="最新新闻">
                         <Description />
                     </CircleButton>
-                    <CircleButton link="https://youtu.be/_mBBGp7Pwnw=nws" tooltip="Watch video to learn more">
+                    <CircleButton link="https://tanmantang.com" tooltip="观看视频">
                         <PlayArrow />
-                    </CircleButton>
+                    </CircleButton> */}
                 </div>
                 <CircleButton
                     className="to-website"
@@ -46,7 +46,7 @@ class FreePalestine extends Component {
                         setTimeout(() => this.setState({ hidden: true, isHiding: false }), 1000);
                     }}
                     size={4}
-                    tooltip="Go to website"
+                    tooltip="回到主页"
                 >
                     <ChevronRight />
                 </CircleButton>
@@ -55,4 +55,4 @@ class FreePalestine extends Component {
     }
 }
 
-export default FreePalestine;
+export default Notice;

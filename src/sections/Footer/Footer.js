@@ -13,19 +13,28 @@ class Footer extends React.Component {
                 </p>
                 <p>
                     {CommonConfig.social.map((socialDetails, index) => {
-                        return (
+                        // 检查链接是否为图片
+                        const isImageLink = socialDetails.link && /\.(jpg|jpeg|png|gif|svg)$/i.test(socialDetails.link);
+                        return isImageLink ? (
+                            <div key={'footer-social-' + index} className="social-icon-container">
+                                <div className="circle-button">
+                                    {/* 如果提供了社交媒体平台图标，则使用该图标，否则从默认图标中选择 */}
+                                    {socialDetails.icon ? socialDetails.icon : Icons[socialDetails.name.toLowerCase()]}
+                                </div>
+                                <div className="image-tooltip">
+                                    <img 
+                                        src={socialDetails.link} 
+                                        alt={socialDetails.name} 
+                                    />
+                                </div>
+                            </div>
+                        ) : (
                             <CircleButton key={'footer-social-' + index} tooltip={socialDetails.name} tooltipPlacement="top"
                                 link={socialDetails.link} target="_blank">
-                                {/* If the social platform icon is given then use that else pick from default icons */}
-                                {socialDetails.icon
-                                    ? socialDetails.icon : Icons[socialDetails.name.toLowerCase()]}
-
+                                {socialDetails.icon ? socialDetails.icon : Icons[socialDetails.name.toLowerCase()]}
                             </CircleButton>
                         );
                     })}
-                </p>
-                <p>
-                    <a href="https://github.com/9inpachi/krit" target="_blank" rel="noopener noreferrer">get the code {'</>'}</a>
                 </p>
             </div>
         );

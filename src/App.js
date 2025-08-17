@@ -3,7 +3,7 @@ import Menu from './components/Menu/Menu';
 import TopSection from './sections/TopSection/TopSection';
 import CustomSections from './sections/CustomSections/CustomSections';
 import Footer from './sections/Footer/Footer';
-import FreePalestine from './components/FreePalestine/FreePalestine';
+import Notice from './components/Notice/Notice';
 
 import { CustomSectionsConfig, CommonConfig } from './config'
 
@@ -35,7 +35,7 @@ class App extends React.Component {
     render() {
         return (
             <>
-                {CommonConfig.addFreePalestine && <FreePalestine />}
+                {CommonConfig.addNotice && <Notice />}
                 <Menu sectionRefs={this.sectionRefs} />
                 <TopSection />
                 <CustomSections sectionRefs={this.sectionRefs} />

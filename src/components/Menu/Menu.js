@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import MenuToggle from './MenuToggle/MenuToggle';
 import MenuItem from './MenuItem/MenuItem';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
-import ComputerIcon from '@material-ui/icons/Computer';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import './Menu.scss';
 
@@ -16,7 +15,8 @@ class Menu extends React.Component {
     menuItems = [
         {
             icon: <ArrowUpwardIcon />,
-            tooltip: 'go to top',
+            tooltip: '回到顶部',
+
             action: () => {
                 window.scrollTo({
                     top: 0,
@@ -26,7 +26,7 @@ class Menu extends React.Component {
         },
         {
             icon: <NightsStayIcon />,
-            tooltip: 'toggle dark/light theme',
+            tooltip: '切换深色/浅色主题',
             action: () => {
                 document.body.classList.toggle('dark-mode');
                 if (document.body.classList.contains('dark-mode')) {
@@ -36,13 +36,6 @@ class Menu extends React.Component {
                 }
             }
         },
-        {
-            icon: <ComputerIcon />,
-            tooltip: 'projects',
-            action: () => {
-                this.scrollToSection('projects');
-            }
-        }
     ]
 
     // Functions
@@ -51,7 +44,7 @@ class Menu extends React.Component {
         super(props);
         this.state = { menuActive: false };
 
-        // Sections in menu
+        // 菜单部分
         const sectionsInMenu = CustomSectionsConfig.map((section) => {
             if (!section.notInMenu) {
                 return {
@@ -68,10 +61,10 @@ class Menu extends React.Component {
 
         this.menuItems = this.menuItems.concat(sectionsInMenu);
 
-        // More of a workaround
+        // 更多变通方法
         this.menuItems = this.menuItems.map((menuItem) => {
             menuItem.key = 'menu-item-' + Math.round(Math.random() * 10000);
-            // Resizing icons
+            // 调整图标大小
             menuItem.icon = React.cloneElement(menuItem.icon, { classes: { root: 'menu-item-icon' } });
             return menuItem;
         });
@@ -101,9 +94,9 @@ class Menu extends React.Component {
         console.log(isMobile);
 
         return (
-            // The "menu-active" class is also used by MenuToggle and MenuItem(s)
-            // We could pass a prop to each component but CSS is good here to avoid overhead
-            // since our usecase is simple
+            // "menu-active" 类也被 MenuToggle 和 MenuItem(s) 使用
+            // 我们可以向每个组件传递一个 prop，但在这里使用 CSS 可以避免额外开销
+            // 因为我们的用例很简单
             <div className={this.state.menuActive ? 'menu menu-active' : 'menu'}>
                 <div className="menu-backdrop" onClick={this.closeMenu}></div>
                 <div className="menu-data">
