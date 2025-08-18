@@ -4,7 +4,7 @@
 
 ## 设置
 
-为了设置项目，您需要 [Node.js](https://nodejs.org/en/download/) 和 [Git](https://git-scm.com/downloads)。
+您需要安装 [Node.js](https://nodejs.org/en/download/) 和 [Git](https://git-scm.com/downloads)。
 
 ## 使用方法
 
@@ -12,7 +12,7 @@
 
 ```sh
 # 克隆项目
-$ git clone https://github.com/tangmantan/krit.git
+$ git clone https://gitee.com/tanmantang/krit.git
 
 # 进入包含克隆项目的目录
 $ cd krit
@@ -23,6 +23,9 @@ $ npm i
 # 运行项目的开发版本
 $ npm run start
 ```
+
+## 原作者开源地址
+https://github.com/9inpachi/krit
 
 ## 配置
 
