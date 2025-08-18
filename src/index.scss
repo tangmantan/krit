@@ -1,33 +1,43 @@
 // Importing fonts
 // @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
-// 引入本地阿里妈妈东方大楷字体
+// 引入字体 - 优先远程，本地作为备选
+// 注意: 实际字体加载逻辑在 font-loader.js 中处理
+
+// 阿里妈妈东方大楷字体 - 远程优先
 @font-face {
   font-family: "阿里妈妈东方大楷 Regular";
-  src: url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.woff2") format("woff2"),
-       url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.woff") format("woff"),
-       url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.ttf") format("truetype"),
-       url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.otf") format("opentype");
+  src: url("https://tanmantang.oss-cn-chengdu.aliyuncs.com/www/font/AlimamaDongFangDaKai/AlimamaDongFangDaKai-Regular.woff2") format("woff2"),
+       url("https://tanmantang.oss-cn-chengdu.aliyuncs.com/www/font/AlimamaDongFangDaKai/AlimamaDongFangDaKai-Regular.woff") format("woff"),
+       url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.woff2") format("woff2"),
+       url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.woff") format("woff");
   font-variation-settings: normal;
   font-display: swap;
   font-weight: unset;
+  font-display: swap;
 }
 
-// 引入本地得意黑斜体字体
+// 得意黑斜体字体 - 远程优先
 @font-face {
   font-family: "得意黑 斜体";
   font-weight: normal;
   font-style: italic;
-  src: url("./assets/font/dyh/SmileySans-Oblique.woff2") format("woff2"),
-       url("./assets/font/dyh/SmileySans-Oblique.woff") format("woff"),
-       url("./assets/font/dyh/SmileySans-Oblique.ttf") format("truetype"),
-       url("./assets/font/dyh/SmileySans-Oblique.otf") format("opentype");
+  src: url("https://tanmantang.oss-cn-chengdu.aliyuncs.com/www/font/SmileySans/SmileySans-Oblique.woff2") format("woff2"),
+       url("https://tanmantang.oss-cn-chengdu.aliyuncs.com/www/font/SmileySans/SmileySans-Oblique.woff") format("woff"),
+       url("./assets/font/dyh/SmileySans-Oblique.woff2") format("woff2"),
+       url("./assets/font/dyh/SmileySans-Oblique.woff") format("woff");
   font-display: swap;
 }
 
 // 字体变量
 $font-almmdfdk: "阿里妈妈东方大楷 Regular";
 $font-dyh: "得意黑 斜体";
+
+
+// 备用字体类 - 当远程字体加载失败时使用
+.font-local-only {
+  --font-fallback: 1;
+}
 $font-varela: 'Varela Round', sans-serif;
 
 // Variables for light theme
@@ -53,12 +63,29 @@ body {
     // font-family: 'Varela Round', sans-serif;
     font-family: '得意黑 斜体', sans-serif;
     font-size: 16px;
+    // 应用备用字体类，如果远程加载失败
+    &.font-local-only {
+        font-family: '得意黑 斜体', sans-serif !important;
+    }
     // 深色模式过渡动画
     transition: all 0.7s;
 }
 
 h1, h2, h3, h4 {
     font-weight: normal;
+}
+
+// 确保h3标签内的图标垂直居中
+ h3 {
+    // display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+// 确保图标在h3中正确对齐
+ h3 svg {
+    vertical-align: middle;
+    display: inline-block;
 }
 
 input, textarea, button {

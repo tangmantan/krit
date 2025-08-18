@@ -21,7 +21,7 @@
 
         p {
             font-size: 2rem;
-            margin: 0;
+            margin: 0 1rem 0 0;
         }
     }
 
@@ -90,18 +90,32 @@
 
 @media screen and (max-width: 1300px) {
     .top-section {
-
         .intro {
-            width: 50%;
-
             h1 {
-                font-size: 7rem;
+                font-size: 6.5rem;
+            }
+            p {
+                font-size: 1.5rem;
             }
         }
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 912px) and (min-width: 750px) {
+    .top-section {
+        .intro {
+            h1 {
+                font-size: 5rem;
+            }
+            p {
+                font-size: 1.3rem;
+                margin: 1rem 1rem 0 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 750px) {
     .top-section {
         flex-direction: column;
 
@@ -115,6 +129,10 @@
 
             h1 {
                 font-size: 5rem;
+            }
+            p {
+                font-size: 1.3rem;
+                margin: 1rem 1rem 0 0;
             }
         }
 

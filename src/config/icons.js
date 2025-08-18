@@ -29,6 +29,12 @@ import { ReactComponent as ServerIcon } from '../assets/icons/server.svg';
 import { ReactComponent as DamengIcon } from '../assets/icons/dameng.svg';
 import { ReactComponent as PowerShellIcon } from '../assets/icons/powershell.svg';
 import { ReactComponent as PythonIcon } from '../assets/icons/python.svg';
+import { ReactComponent as CompanyIcon } from '../assets/icons/company.svg';
+import { ReactComponent as ParateraIcon } from '../assets/icons/paratera.svg';
+import { ReactComponent as ChanganIcon } from '../assets/icons/changan.svg';
+import { ReactComponent as CmhkIcon } from '../assets/icons/zhaoshangju.svg';
+import { ReactComponent as FyIcon } from '../assets/icons/fuyao.svg';
+import { ReactComponent as FyGroupIcon } from '../assets/icons/fuyaogroup.svg';
 // ICONS END
 
 /** Default icons */
@@ -51,6 +57,7 @@ const Icons = {
     qq: <SvgIcon component={QQIcon} viewBox="0 0 1024 1024" title="QQ" />,
     weixin: <SvgIcon component={WeixinIcon} viewBox="0 0 1024 1024" title="微信" />,
     gitee: <SvgIcon component={GiteeIcon} viewBox="0 0 1024 1024" />,
+    // github: <SvgIcon component={GitHubIcon} stroke="currentColor" strokeWidth={2} style={{ fill: 'none' }} />,
     github: <SvgIcon component={GitHubIcon} viewBox="0 0 1024 1024" />,
     redis: <SvgIcon component={RedisIcon} viewBox="0 0 1024 1024" />,
     nacos: <SvgIcon component={NacosIcon} viewBox="0 0 5120 1024" />,
@@ -63,7 +70,13 @@ const Icons = {
     shell: <SvgIcon component={PowerShellIcon} viewBox="0 0 1024 1024" />,
     cmd: <SvgIcon component={PowerShellIcon} viewBox="0 0 1024 1024" />,
     python: <SvgIcon component={PythonIcon} viewBox="0 0 1024 1024" />,
-
+    company: <SvgIcon component={CompanyIcon} viewBox="0 0 1024 1024" fill='currentColor' />,
+    paratera: <SvgIcon component={ParateraIcon} viewBox="0 0 8230 1024" fontSize="large" />,
+    changan: <SvgIcon component={ChanganIcon} viewBox="0 0 1024 1024" />,
+    cmhk: <SvgIcon component={CmhkIcon} viewBox="0 0 1024 1024" />,
+    zhaoshangju: <SvgIcon component={CmhkIcon} viewBox="0 0 1024 1024" />,
+    fuyao: <SvgIcon component={FyIcon} viewBox="0 0 300 300" />,
+    fuyaofroup: <SvgIcon component={FyGroupIcon} viewBox="0 0 500 200" />,
 
 };
 

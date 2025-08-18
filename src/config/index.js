@@ -7,6 +7,8 @@ import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ComputerIcon from '@material-ui/icons/Computer';
 import InfoIcon from '@material-ui/icons/Info';
 import RateReviewIcon from '@material-ui/icons/RateReview';
+import { ReactComponent as ParateraIcon } from '../assets/icons/paratera.svg';
+import { ReactComponent as FyIcon } from '../assets/icons/fuyaogroup.svg';
 
 // 自定义组件
 import CircleButton from '../components/CircleButton/CircleButton';
@@ -59,8 +61,9 @@ const ProjectsConfig = {
     
     projects: [
         {
-            name: 'Interactive Maps Application',
-            icon: Icons['map'],
+            name: '北京并行科技股份有限公司',
+            icon: <ParateraIcon width={120} height={30} fill='currentColor' />,
+            // icon: Icons['code'],
             description: 'An application extension in XWiki to easily create interactive maps with ability to share locations and associate structured data with areas.',
             links: [
                 {
@@ -76,8 +79,8 @@ const ProjectsConfig = {
             ]
         },
         {
-            name: 'OpenCL code-generation backend for GPU-enhanced Neural Networks',
-            icon: <SettingsInputAntennaIcon />,
+            name: '重庆长安汽车股份有限公司',
+            icon: Icons['changan'],
             description: 'GeNN is a GPU-enhanced Neuronal Network simulation environment based on code generation for NVIDIA CUDA. This project added a new OpenCL based backend to GeNN.',
             links: [
                 {
@@ -88,8 +91,8 @@ const ProjectsConfig = {
             ]
         },
         {
-            name: 'Phoenix',
-            icon: <WbIridescentIcon />,
+            name: '招商局公路网络科技控股股份有限公司',
+            icon: Icons['zhaoshangju'],
             description: 'A web-based experiment independent event display for High Energy Physics.',
             links: [
                 {
@@ -105,8 +108,8 @@ const ProjectsConfig = {
             ]
         },
         {
-            name: 'Empower Youth for Work - Oxfam GB',
-            icon: <BusinessCenterIcon />,
+            name: '福耀集团',
+            icon: <FyIcon width={80} height={30} fill='currentColor' />,
             description: 'A web system to manage beneficiaries information and keep track of beneficiaries influenced by the EYW project.',
             links: [
                 {
@@ -121,8 +124,8 @@ const ProjectsConfig = {
 
 const CustomSectionsConfig = [
     {
-        name: '一些项目',
-        headerIcon: <ComputerIcon />,
+        name: '任职经历',
+        headerIcon: Icons['company'],
         // 应用样式的额外类
         // "section-reverse" 类使区域从右到左排列
         extraClass: '',
@@ -158,8 +161,9 @@ const CustomSectionsConfig = [
         content: (
             <>
                 <h4>这帅气小伙是谁{Icons['helpoutline']}</h4>
-                <p> 一个资深运维工程师，专注于服务器运维管理和技术研究，喜欢动漫、游戏(最近喜欢上了户外)和研究AI技术相关内容😁的人儿</p>
-                <h4>{Icons['code']} 后端</h4>
+                <p> 一个资深运维工程师，专注于服务器运维管理和技术研究，喜欢动漫、游戏(最近喜欢上了户外)和研究AI技术相关内容的人儿</p>
+                <h4>我会的一些技能</h4>
+                <h3>{Icons['code']} 后端</h3>
                 <p className="programming-icons">
                     {Icons['java']}
                     {Icons['php']}
@@ -169,7 +173,7 @@ const CustomSectionsConfig = [
                     {Icons['python']}
                 </p>
 
-                <h4>{Icons['web']} 前端</h4>
+                <h3>{Icons['web']} 前端</h3>
                 <p className="programming-icons">
                     {Icons['javascript']}
                     {Icons['nodejs']}
@@ -177,7 +181,7 @@ const CustomSectionsConfig = [
                     {Icons['vue']}
                     {Icons['nginx']}
                 </p>
-                <h4>{Icons['server']} 其他</h4>
+                <h3>{Icons['server']} 其他</h3>
                 <p className="programming-icons">
                     {Icons['docker']}
                     {Icons['nacos']}
