@@ -1,16 +1,29 @@
+
 .section-wrapper {
     width: 100%;
-
     .section {
         padding: 5rem;
         display: flex;
+        width: 100%;
+        box-sizing: border-box;
+        font-weight: unset;
 
         .section-header {
-            font-size: 3rem;
-            padding-right: 2rem;
+            font-size: 2.6rem;
+            padding-right: 1.2rem;
             border-right: 1px solid var(--text-primary);
             display: flex;
             align-items: flex-start;
+            justify-content: center;
+            white-space: nowrap;
+            overflow: visible;
+            text-overflow: clip;
+            max-width: 100%;
+            min-width: fit-content;
+            // font-family: "得意黑 斜体",;
+            letter-spacing: 0.05em;
+            box-sizing: border-box;
+            padding-left: 0.5rem;
 
             .section-header-icon {
                 padding: 0.625rem;

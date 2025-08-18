@@ -101,7 +101,7 @@ class Menu extends React.Component {
                 <div className="menu-backdrop" onClick={this.closeMenu}></div>
                 <div className="menu-data">
                     <MenuToggle isMobile={isMobile} toggleMenu={this.toggleMenu}>
-                        ME<br />NU
+                        菜<br />单
                     </MenuToggle>
                     {this.menuItems.map((menuItem, index) => {
                         let angle = startAngle;

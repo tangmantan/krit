@@ -1,43 +1,40 @@
 // Importing fonts
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
-
+// 引入本地阿里妈妈东方大楷字体
 @font-face {
   font-family: "阿里妈妈东方大楷 Regular";
-  src: url("//at.alicdn.com/wf/webfont/uoyBX1BZj3Nf/Lj5rTcgQ2Wxv.woff2") format("woff2"),
-  url("//at.alicdn.com/wf/webfont/uoyBX1BZj3Nf/0KF4nWDM887u.woff") format("woff");
+  src: url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.woff2") format("woff2"),
+       url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.woff") format("woff"),
+       url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.ttf") format("truetype"),
+       url("./assets/font/almmdfdk/AlimamaDongFangDaKai-Regular.otf") format("opentype");
   font-variation-settings: normal;
+  font-display: swap;
+  font-weight: unset;
+}
+
+// 引入本地得意黑斜体字体
+@font-face {
+  font-family: "得意黑 斜体";
+  font-weight: normal;
+  font-style: italic;
+  src: url("./assets/font/dyh/SmileySans-Oblique.woff2") format("woff2"),
+       url("./assets/font/dyh/SmileySans-Oblique.woff") format("woff"),
+       url("./assets/font/dyh/SmileySans-Oblique.ttf") format("truetype"),
+       url("./assets/font/dyh/SmileySans-Oblique.otf") format("opentype");
   font-display: swap;
 }
 
-.webfont {
-  font-family: "阿里妈妈东方大楷 Regular";
-  font-variation-settings: normal; /* Chrome 140 以下版本需要 */
-}
-
-@font-face {
-  font-family: "得意黑 斜体";
-  font-weight: 400;
-  src: url("//at.alicdn.com/wf/webfont/uoyBX1BZj3Nf/srcpr0Da8Qgo.woff2") format("woff2"),
-  url("//at.alicdn.com/wf/webfont/uoyBX1BZj3Nf/HXn7tsWHydQ9.woff") format("woff");
-  font-variation-settings: normal;
-  font-display: swap;
-}
-
-.webfont {
-  font-family: "得意黑 斜体";
-  font-variation-settings: normal; /* Chrome 140 以下版本需要 */
-}
-
-
-
+// 字体变量
+$font-almmdfdk: "阿里妈妈东方大楷 Regular";
+$font-dyh: "得意黑 斜体";
+$font-varela: 'Varela Round', sans-serif;
 
 // Variables for light theme
 :root {
     --bg-primary: #fafafa;
     --text-primary: #000000;
     --text-secondary: #e0e0e0;
-    
     font-size: 16px;
 }
 
@@ -53,10 +50,15 @@ body {
     margin: 0;
     background: var(--bg-primary);
     color: var(--text-primary);
-    font-family: 'Varela Round', sans-serif;
+    // font-family: 'Varela Round', sans-serif;
+    font-family: '得意黑 斜体', sans-serif;
     font-size: 16px;
-    // Transition for dark mode
-    transition: all 0.2s;
+    // 深色模式过渡动画
+    transition: all 0.7s;
+}
+
+h1, h2, h3, h4 {
+    font-weight: normal;
 }
 
 input, textarea, button {
@@ -67,6 +69,7 @@ input, textarea, button {
     width: 1100px;
     max-width: 90%;
     margin: 0 auto;
+    
 }
 
 a {

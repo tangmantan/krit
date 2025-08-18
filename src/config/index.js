@@ -121,7 +121,7 @@ const ProjectsConfig = {
 
 const CustomSectionsConfig = [
     {
-        name: 'projects',
+        name: '一些项目',
         headerIcon: <ComputerIcon />,
         // 应用样式的额外类
         // "section-reverse" 类使区域从右到左排列
@@ -152,7 +152,7 @@ const CustomSectionsConfig = [
         )
     },
     {
-        name: '关于',
+        name: '关于我',
         headerIcon: <InfoIcon />,
         extraClass: 'about-section section-reverse',
         content: (
@@ -196,28 +196,30 @@ const CustomSectionsConfig = [
                 <p>
                     <span style={{ fontSize: '5rem', height: '30px', display: 'block' }}>“</span>
                     <br />
-                    tanmantang在斯欧为我们做了出色的工作。他努力工作，编写了非常好且清晰易读的代码，并为该项目做出了宝贵的贡献。
+                    谭满堂在长安汽车为我们做了出色的工作。他努力工作，编写了非常好且清晰易读的代码，并为该项目做出了宝贵的贡献。
                 </p>
                 <p>我们喜欢他非常积极、自我驱动，并且已经是一位经验丰富、知识渊博的编码员。</p>
                 <p style={{ textAlign: 'right', fontSize: 'small' }}>
                     <i>
-                        <b>Edward Moyse</b>
+                        <b>朱华荣</b>
                         <br />
-                        Software Coordinator
+                        重庆长安汽车股份有限公司
                         <br />
-                        CERN
+                        董事长、党委书记
                     </i>
                 </p>
                 <p>
                     <span style={{ fontSize: '5rem', height: '30px', display: 'block' }}>“</span>
                     <br />
-                    The mentors have noticed that Fawad has strong technical skills, an ability to learn quickly new technologies, that he is very flexible and open minded, ready to discuss his views and to ponder about the pros and cons in a thoughtful and collected manner, making his own decisions taking into account the feedback he gets without accepting everything nor rejecting anything.
+                    谭满堂拥有强大的技术技能，能够快速学习新技术，他非常灵活和开放，随时准备讨论自己的观点，并以深思熟虑和收集的方式思考利弊，在做出决定时考虑到他得到的反馈，而不接受任何东西，也不拒绝任何东西。
                 </p>
                 <p style={{ textAlign: 'right', fontSize: 'small' }}>
                     <i>
-                        <b>Stéphane Lauriere &amp; Ecaterina Moraru</b>
+                        <b>张三 & 李四</b>
                         <br />
-                        XWiki SAS
+                        重庆市最牛逼集团
+                        <br />
+                        总裁 & 技术总监
                     </i>
                 </p>
                 <p>
