@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { ChevronRight, Description, PlayArrow } from '@material-ui/icons';
+import { ChevronRight } from '@material-ui/icons';
 import CircleButton from '../CircleButton/CircleButton';
 import { Icons } from '../../config/icons';
 import './Notice.scss';
@@ -32,11 +32,9 @@ class Notice extends Component {
                         {Icons['douyin']}
                     </CircleButton>
                     <CircleButton link="https://weibo.com" tooltip="微博新闻">
-                        {/* <Description /> */}
                         {Icons['weibo']}
                     </CircleButton>
                     <CircleButton link="https://www.bilibili.com/video/BV1Au4y1N7Pe?t=6.1" tooltip="观看视频">
-                        {/* <PlayArrow /> */}
                         {Icons['bilibili']}
                     </CircleButton>
                 </div>
