@@ -63,17 +63,11 @@ const ProjectsConfig = {
         {
             name: '北京并行科技股份有限公司',
             icon: <ParateraIcon width={120} height={30} fill='currentColor' />,
-            // icon: Icons['code'],
-            description: 'An application extension in XWiki to easily create interactive maps with ability to share locations and associate structured data with areas.',
+            description: '一家全国数一数二的高性能计算服务供应商，在职期间曾担任运维工程师，安全高效的保障了公司千台服务器稳定运行，编写代码对高性能计算集群的精准调度以及分配，让客户沉浸在更快、更准、更稳的计算中。',
             links: [
                 {
-                    tooltip: 'See source',
-                    link: 'https://github.com/xwiki-contrib/application-interactive-maps',
-                    icon: Icons['code']
-                },
-                {
-                    tooltip: 'See app',
-                    link: 'https://extensions.xwiki.org/xwiki/bin/view/Extension/InteractiveMapsApplication/',
+                    tooltip: '官网地址',
+                    link: 'https://www.paratera.com/',
                     icon: Icons['link']
                 }
             ]
@@ -81,40 +75,36 @@ const ProjectsConfig = {
         {
             name: '重庆长安汽车股份有限公司',
             icon: Icons['changan'],
-            description: 'GeNN is a GPU-enhanced Neuronal Network simulation environment based on code generation for NVIDIA CUDA. This project added a new OpenCL based backend to GeNN.',
+            description: '重新优化行人碰撞检测算法，提高了碰撞检测的准确性和效率，减少了碰撞事故的发生。使用HPC对流体等加速计算',
             links: [
                 {
-                    tooltip: 'See source',
-                    link: 'https://github.com/9inpachi/genn',
-                    icon: Icons['code']
-                }
-            ]
-        },
-        {
-            name: '招商局公路网络科技控股股份有限公司',
-            icon: Icons['zhaoshangju'],
-            description: 'A web-based experiment independent event display for High Energy Physics.',
-            links: [
-                {
-                    tooltip: 'See source',
-                    link: 'https://github.com/hsf/phoenix',
-                    icon: Icons['code']
-                },
-                {
-                    tooltip: 'See app',
-                    link: 'https://hepsoftwarefoundation.org/phoenix/',
+                    tooltip: '官网地址',
+                    link: 'https://www.changan.com.cn/',
                     icon: Icons['link']
                 }
             ]
         },
         {
-            name: '福耀集团',
-            icon: <FyIcon width={80} height={30} fill='currentColor' />,
-            description: 'A web system to manage beneficiaries information and keep track of beneficiaries influenced by the EYW project.',
+            name: '招商局重庆交通科研设计院有限公司',
+            icon: Icons['zhaoshangju'],
+            description: '重构了公司的IT系统，整合了公司的IT资源，优化IT部研发效率，提高了IT系统的效率和可靠性。',
+
             links: [
                 {
-                    tooltip: 'See app',
-                    link: 'https://oipeywdb.com/',
+                    tooltip: '官网地址',
+                    link: 'https://www.cmct.cn/',
+                    icon: Icons['link']
+                },
+            ]
+        },
+        {
+            name: '福耀集团',
+            icon: <FyIcon width={80} height={30} fill='currentColor' />,
+            description: '2018年福耀欧洲新厂正式投产，同期担任技术经理派往欧洲指导技术工作',
+            links: [
+                {
+                    tooltip: '官网地址',
+                    link: 'https://www.fuyaogroup.com/',
                     icon: Icons['link']
                 }
             ]
@@ -136,18 +126,17 @@ const CustomSectionsConfig = [
                 {ProjectsConfig.projects.map((project, index) => {
                     return (
                         <div key={'project-' + index}>
-                            <h3 style={{ fontSize: '1.4rem' }}>{project.icon} {project.name}</h3>
-                            <p>{project.description}</p>
-                            <div style={{ textAlign: 'right' }}>
-                                {project.links.map((link, linkIndex) => {
+                            <h3 style={{ fontSize: '1.4rem' }}>{project.icon} {project.name}
+                                    {project.links.map((link, linkIndex) => {
                                     return (
-                                        <CircleButton key={'project-link-' + index + linkIndex} link={link.link} 
+                                        <CircleButton className="project-link" key={'project-link-' + index + linkIndex} link={link.link} 
                                             target="_blank" tooltip={link.tooltip} size={1.4}>
                                             {link.icon}
                                         </CircleButton>
                                     );
                                 })}
-                            </div>
+                            </h3>
+                            <p style={{paddingBottom: '3rem'}}>{project.description}</p>
                         </div>
                     );
                 })}
