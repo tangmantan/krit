@@ -16,11 +16,9 @@ class Menu extends React.Component {
         {
             icon: <ArrowUpwardIcon />,
             tooltip: '回到顶部',
-
             action: () => {
                 window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+                    top: 0, behavior: 'smooth'
                 });
             }
         },
@@ -89,10 +87,9 @@ class Menu extends React.Component {
 
     render() {
         const isMobile = window.matchMedia('(max-width: 768px)').matches ? true : false;
-        const startAngle = isMobile ? 0 : -90;
+        const startAngle = isMobile ? 0 : 90;
         const rotationAngle = isMobile ? 90 : 180;
-        console.log(isMobile);
-
+        // console.log(isMobile);
         return (
             // "menu-active" 类也被 MenuToggle 和 MenuItem(s) 使用
             // 我们可以向每个组件传递一个 prop，但在这里使用 CSS 可以避免额外开销

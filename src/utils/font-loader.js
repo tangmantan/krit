@@ -56,7 +56,7 @@ class FontLoader {
 
       // 如果宽度变化了，说明字体加载成功
       if (newWidth !== initialWidth) {
-        console.log(`字体加载成功: ${font.name}`);
+        // console.log(`字体加载成功: ${font.name}`);
         document.body.removeChild(testElement);
         return;
       }
@@ -85,7 +85,7 @@ class FontLoader {
         setTimeout(() => {
           const newWidth = testElement.offsetWidth;
           if (newWidth === initialWidth) {
-            console.warn(`远程字体 ${font.name} 存在但加载失败，切换到本地字体`);
+            // console.warn(`远程字体 ${font.name} 存在但加载失败，切换到本地字体`);
             document.body.classList.add(font.localFallbackClass);
           }
           document.body.removeChild(testElement);

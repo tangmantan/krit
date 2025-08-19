@@ -17,7 +17,7 @@ class MenuItem extends React.Component {
                 tooltip={this.props.tooltip}
                 onClick={this.props.action}
                 tooltipPlacement={this.props.tooltipPlacement}
-                size={3.5}
+                size={this.props.isMobile ? 2.5 : 3.8}
                 style={this.props.menuActive ? {
                     transform: this.activeTransformStyle(
                         this.props.rotationAngle,
