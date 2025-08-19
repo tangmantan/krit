@@ -35,6 +35,12 @@ import { ReactComponent as ChanganIcon } from '../assets/icons/changan.svg';
 import { ReactComponent as CmhkIcon } from '../assets/icons/zhaoshangju.svg';
 import { ReactComponent as FyIcon } from '../assets/icons/fuyao.svg';
 import { ReactComponent as FyGroupIcon } from '../assets/icons/fuyaogroup.svg';
+import { ReactComponent as CctvIcon } from '../assets/icons/cctv.svg';
+import { ReactComponent as CctvNewsIcon } from '../assets/icons/cctv_news.svg';
+import { ReactComponent as DouyinIcon } from '../assets/icons/douyin.svg';
+import { ReactComponent as WeiboIcon } from '../assets/icons/weibo.svg';
+import { ReactComponent as BilibiliIcon } from '../assets/icons/bilibili.svg';
+
 // ICONS END
 
 /** Default icons */
@@ -77,6 +83,11 @@ const Icons = {
     zhaoshangju: <SvgIcon component={CmhkIcon} viewBox="0 0 1024 1024" />,
     fuyao: <SvgIcon component={FyIcon} viewBox="0 0 300 300" />,
     fuyaofroup: <SvgIcon component={FyGroupIcon} viewBox="0 0 500 200" />,
+    cctv: <SvgIcon component={CctvIcon} viewBox="0 0 1024 1024" />,
+    cctv_news: <SvgIcon component={CctvNewsIcon} viewBox="0 0 1024 1024" />,
+    douyin: <SvgIcon component={DouyinIcon} viewBox="0 0 1024 1024" />,
+    weibo: <SvgIcon component={WeiboIcon} viewBox="0 0 1024 1024" />,
+    bilibili: <SvgIcon component={BilibiliIcon} viewBox="0 0 2299 1024" />,
 
 };
 
