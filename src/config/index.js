@@ -12,7 +12,7 @@ import CircleButton from '../components/CircleButton/CircleButton';
 // 顶部区域和页脚的通用配置
 const CommonConfig = {
     // 是否开启首页通知
-    addNotice: true,
+    addNotice: false,
     name: '谭满堂',
     tagline: 'HPC运维工程师',
     signature: {
