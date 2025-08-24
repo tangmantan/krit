@@ -34,6 +34,13 @@ class Menu extends React.Component {
                 }
             }
         },
+        {
+            icon: <ComputerIcon />,
+            tooltip: '项目开源地址',
+            action: () => {
+                window.open('https://github.com/9inpachi/krit');
+            }
+        },
     ]
 
     // Functions
