@@ -3,14 +3,13 @@ import CircleButton from '../../components/CircleButton/CircleButton';
 import './Footer.scss';
 
 import { CommonConfig, Icons } from '../../config';
+import { colors } from '@material-ui/core';
 
 class Footer extends React.Component {
     render() {
         return (
             <div className="footer">
-                <p>
-                    Copyright &copy; {new Date().getFullYear()} All rights reserved
-                </p>
+                
                 <p>
                     {CommonConfig.social.map((socialDetails, index) => {
                         // 检查链接是否为图片
@@ -35,6 +34,10 @@ class Footer extends React.Component {
                             </CircleButton>
                         );
                     })}
+                </p>
+                <a href="https://beian.miit.gov.cn" style={{fontSize:"0.8rem"}}>渝ICP备18004584号-5</a>
+                <p>
+                    Copyright &copy; {new Date().getFullYear()} All rights reserved
                 </p>
             </div>
         );
