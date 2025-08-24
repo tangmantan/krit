@@ -40,6 +40,7 @@ import { ReactComponent as CctvNewsIcon } from '../assets/icons/cctv_news.svg';
 import { ReactComponent as DouyinIcon } from '../assets/icons/douyin.svg';
 import { ReactComponent as WeiboIcon } from '../assets/icons/weibo.svg';
 import { ReactComponent as BilibiliIcon } from '../assets/icons/bilibili.svg';
+import { ReactComponent as PeopleIcon } from '../assets/icons/people.svg';
 
 // ICONS END
 
@@ -88,6 +89,7 @@ const Icons = {
     douyin: <SvgIcon component={DouyinIcon} viewBox="0 0 1024 1024" />,
     weibo: <SvgIcon component={WeiboIcon} viewBox="0 0 1024 1024" />,
     bilibili: <SvgIcon component={BilibiliIcon} viewBox="0 0 2299 1024" />,
+    people: <SvgIcon component={PeopleIcon} viewBox="0 0 1024 1024" />,
 
 };
 

@@ -6,6 +6,8 @@ import NightsStayIcon from '@material-ui/icons/NightsStay';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import './Menu.scss';
 
+import { ReactComponent as PeopleIcon } from '../../assets/icons/people.svg';
+
 import { CustomSectionsConfig } from '../../config';
 
 class Menu extends React.Component {
@@ -23,6 +25,13 @@ class Menu extends React.Component {
             }
         },
         {
+            icon: <PeopleIcon  width={25} height={25}  />,
+            tooltip: '项目开源地址',
+            action: () => {
+                window.open('https://github.com/9inpachi/krit');
+            }
+        },
+        {
             icon: <NightsStayIcon />,
             tooltip: '切换深色/浅色主题',
             action: () => {
@@ -32,13 +41,6 @@ class Menu extends React.Component {
                 } else {
                     localStorage.setItem('theme', 'light');
                 }
-            }
-        },
-        {
-            icon: <ComputerIcon />,
-            tooltip: '项目开源地址',
-            action: () => {
-                window.open('https://github.com/9inpachi/krit');
             }
         },
     ]
