@@ -12,6 +12,11 @@
 
 ```sh
 # 克隆项目
+
+$ git clone https://github.com/tangmantan/krit.git
+
+或者
+
 $ git clone https://gitee.com/tanmantang/krit.git
 
 # 进入包含克隆项目的目录
