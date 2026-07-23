@@ -86,7 +86,7 @@ const Navbar = ({ sectionRefs }) => {
                         </div>
                         <a
                             className="navbar-github-btn"
-                            href="https://github.com/9inpachi/krit"
+                            href="https://github.com/tangtmantan/krit"
                             target="_blank"
                             rel="noopener noreferrer"
                             title="项目开源地址"

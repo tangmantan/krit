@@ -53,7 +53,6 @@ const CustomSectionsConfig = [
                     {Icons['nginx']}
                     {Icons['docker']}
                     {Icons['shell']}
-                    {Icons['ai']}
                 </p>
             </>
         )
