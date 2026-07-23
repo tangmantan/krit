@@ -45,29 +45,15 @@ const CustomSectionsConfig = [
                 <h4>这帅气小伙是谁{Icons['helpoutline']}</h4>
                 <p>一个资深运维工程师，专注于服务器运维管理和技术研究，喜欢动漫、游戏(最近喜欢上了户外)和研究AI技术相关内容的人儿</p>
                 <h4>我会的一些技能</h4>
-                <h3>{Icons['code']} 后端</h3>
                 <p className="programming-icons">
                     {Icons['java']}
-                    {Icons['php']}
                     {Icons['mysql']}
-                    {Icons['redis']}
-                    {Icons['dameng']}
-                    {Icons['python']}
-                </p>
-                <h3>{Icons['web']} 前端</h3>
-                <p className="programming-icons">
                     {Icons['javascript']}
-                    {Icons['nodejs']}
-                    {Icons['react']}
                     {Icons['vue']}
                     {Icons['nginx']}
-                </p>
-                <h3>{Icons['server']} 其他</h3>
-                <p className="programming-icons">
                     {Icons['docker']}
-                    {Icons['nacos']}
-                    {Icons['minio']}
                     {Icons['shell']}
+                    {Icons['ai']}
                 </p>
             </>
         )

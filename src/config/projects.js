@@ -7,7 +7,7 @@ const ProjectsConfig = {
         {
             name: '招商局重庆交通科研设计院有限公司',
             icon: Icons['zhaoshangju'],
-            description: '重构了公司的IT系统，整合了公司的IT资源，优化IT部研发效率，提高了IT系统的效率和可靠性。',
+            description: '主导公司IT架构全面升级与资源整合，构建高效稳定的基础设施体系，显著提升研发效能与系统可用性，为业务数字化转型奠定坚实基础。',
             links: [
                 {
                     tooltip: '官网地址',
@@ -19,7 +19,7 @@ const ProjectsConfig = {
         {
             name: '重庆长安汽车股份有限公司',
             icon: Icons['changan'],
-            description: '重新优化行人碰撞检测算法，提高了碰撞检测的准确性和效率，减少了碰撞事故的发生。使用HPC对流体等加速计算',
+            description: '担任HPC运维工程师，主导行人碰撞检测算法的性能优化，通过高性能计算集群实现流体动力学加速仿真，大幅提升碰撞检测精度与计算效率，为汽车安全研发提供强有力的技术支撑。',
             links: [
                 {
                     tooltip: '官网地址',
@@ -31,7 +31,7 @@ const ProjectsConfig = {
         {
             name: '福耀集团',
             icon: <FyIcon width={80} height={30} fill="currentColor" />,
-            description: '2018年福耀欧洲新厂正式投产，同期担任技术经理派往欧洲指导技术工作',
+            description: '2018年福耀欧洲新厂投产之际，作为技术经理派驻欧洲，全面负责产线技术部署与团队指导，确保海外工厂顺利投产运营，展现卓越的跨文化技术管理能力。',
             links: [
                 {
                     tooltip: '官网地址',
@@ -43,7 +43,7 @@ const ProjectsConfig = {
         {
             name: '北京并行科技股份有限公司',
             icon: <ParateraIcon width={120} height={30} fill="currentColor" />,
-            description: '一家全国数一数二的高性能计算服务供应商，在职期间曾担任运维工程师，安全高效的保障了公司千台服务器稳定运行，编写代码对高性能计算集群的精准调度以及分配，让客户沉浸在更快、更准、更稳的计算中。',
+            description: '就职于国内领先的高性能计算服务提供商，作为核心运维工程师，保障千台规模服务器集群的高可用运行，自主研发智能调度系统实现计算资源的精准分配，为客户打造极致的高性能计算体验。',
             links: [
                 {
                     tooltip: '官网地址',

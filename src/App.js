@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
-import Menu from './components/Menu/Menu';
+import Navbar from './components/Navbar/Navbar';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import TopSection from './sections/TopSection/TopSection';
 import CustomSections from './sections/CustomSections/CustomSections';
 import Footer from './sections/Footer/Footer';
@@ -30,10 +31,11 @@ const App = () => {
     return (
         <>
             {CommonConfig.addNotice && <Notice />}
-            <Menu sectionRefs={sectionRefs} />
+            <Navbar sectionRefs={sectionRefs} />
             <TopSection />
             <CustomSections sectionRefs={sectionRefs} />
             <Footer />
+            <ScrollToTop />
         </>
     );
 };
