@@ -44,16 +44,35 @@ const CustomSectionsConfig = [
             <>
                 <h4>这帅气小伙是谁{Icons['helpoutline']}</h4>
                 <p>一个资深运维工程师，专注于服务器运维管理和技术研究，喜欢动漫、游戏(最近喜欢上了户外)和研究AI技术相关内容的人儿</p>
-                <h4>我会的一些技能</h4>
+                <h4>我会的一些编程技能</h4>
                 <p className="programming-icons">
+                    {Icons['shell']}
+                    {Icons['k8s']}
                     {Icons['java']}
                     {Icons['mysql']}
                     {Icons['javascript']}
-                    {Icons['vue']}
-                    {Icons['nginx']}
                     {Icons['docker']}
-                    {Icons['shell']}
+                    {Icons['nginx']}
+                    {Icons['html5']}
+                    {Icons['vue']}
+                    {Icons['react']}
+                    {Icons['ai_fill']}
                 </p>
+                <h4>我喜欢的一些事情</h4>
+                <p className="programming-icons">
+                    {Icons['yxlm']}
+                    {/* {Icons['lol']} */}
+                    {Icons['steam']}
+                    {Icons['hiking']}
+                    {/* {Icons['trekking']} */}
+                    {Icons['trekking_boy']}
+                    {Icons['motorcycle']}
+                    {/* {Icons['bicycle']} */}
+                    {Icons['bicycle_fill']}
+                    {/* {Icons['nikon']} */}
+                    {Icons['camera_nikon']}
+                    {Icons['badminton']}
+                </p> 
             </>
         )
     },

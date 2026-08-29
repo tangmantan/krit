@@ -1,39 +1,23 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import DescriptionIcon from '@material-ui/icons/Description';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { ReactComponent as GitHubIcon } from '../../assets/icons/github.svg';
-import { CustomSectionsConfig } from '../../config';
 import './Navbar.scss';
 
-const Navbar = ({ sectionRefs }) => {
+const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(() => document.body.classList.contains('dark-mode'));
-
-    const scrollToSection = useCallback((sectionName) => {
-        const element = sectionRefs[sectionName]?.current;
-        if (element) {
-            window.scrollTo({
-                top: element.offsetTop,
-                left: 0,
-                behavior: 'smooth'
-            });
-            setMenuOpen(false);
-        }
-    }, [sectionRefs]);
 
     const toggleTheme = useCallback(() => {
         document.body.classList.toggle('dark-mode');
         const newIsDark = document.body.classList.contains('dark-mode');
         setIsDarkMode(newIsDark);
         localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
-    }, []);
-
-    const sectionItems = useMemo(() => {
-        return CustomSectionsConfig.filter(section => !section.notInMenu);
     }, []);
 
     const toggleMenu = useCallback(() => {
@@ -62,7 +46,16 @@ const Navbar = ({ sectionRefs }) => {
                                     rel="noopener noreferrer"
                                 >
                                     <PhotoLibraryIcon className="dropdown-item-icon" />
-                                    <span>相册</span>
+                                    <span>旅行相册</span>
+                                </a>
+                                <a
+                                    className="navbar-dropdown-item"
+                                    href="https://car.tanmantang.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <DirectionsCarIcon className="dropdown-item-icon" />
+                                    <span>用车成本</span>
                                 </a>
                                 <a
                                     className="navbar-dropdown-item"
@@ -86,7 +79,7 @@ const Navbar = ({ sectionRefs }) => {
                         </div>
                         <a
                             className="navbar-github-btn"
-                            href="https://github.com/tangtmantan/krit"
+                            href="https://github.com/tangmantan/krit"
                             target="_blank"
                             rel="noopener noreferrer"
                             title="项目开源地址"

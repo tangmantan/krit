@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="footer">
             <SocialLinks social={CommonConfig.social} />
             <a href="https://beian.miit.gov.cn" style={{ fontSize: '0.8rem' }}>
-                渝ICP备18004584号-5
+                渝ICP备18004584号
             </a>
             <p>Copyright &copy; {new Date().getFullYear()} All rights reserved</p>
         </div>
