@@ -16,7 +16,7 @@ import { ReactComponent as MySQLIcon } from '../assets/icons/mysql.svg';
 import { ReactComponent as NodejsIcon } from '../assets/icons/nodejs-plain-wordmark.svg';
 import { ReactComponent as PHPIcon } from '../assets/icons/php-plain.svg';
 import { ReactComponent as ReactIconOriginal } from '../assets/icons/react-original-wordmark.svg';
-import { ReactComponent as TypeScriptIcon } from '../assets/icons/typescript-plain.svg';
+// import { ReactComponent as TypeScriptIcon } from '../assets/icons/typescript-plain.svg';
 import { ReactComponent as QQIcon } from '../assets/icons/qq.svg';
 import { ReactComponent as WeixinIcon } from '../assets/icons/weixin.svg';  
 import { ReactComponent as GiteeIcon } from '../assets/icons/gitee.svg';
@@ -58,7 +58,7 @@ import { ReactComponent as BicycleIcon } from '../assets/icons/bicycle.svg';
 import { ReactComponent as FillBicycleIcon } from '../assets/icons/bicycle-fill.svg';
 import { ReactComponent as MotorcycleIcon } from '../assets/icons/motorcycle.svg';
 import { ReactComponent as NikonIcon } from '../assets/icons/nikon.svg';
-import { ReactComponent as CameraNikonIcon } from '../assets/icons/camera_nikon_n.svg';
+import { ReactComponent as CameraNikonIcon } from '../assets/icons/nikon_camera.svg';
 import { ReactComponent as HikingIcon } from '../assets/icons/Hiking.svg';
 import { ReactComponent as TrekkingIcon } from '../assets/icons/Trekking.svg';
 import { ReactComponent as TrekkingBoyIcon } from '../assets/icons/Trekking-boy.svg';
@@ -73,7 +73,7 @@ const Icons = {
     projects: <ComputerIcon />,
     about: <InfoIcon />,
     java: <SvgIcon component={JavaIcon} viewBox="0 0 1024 1024" fontSize="large" title="Java" />,
-    typescript: <SvgIcon component={TypeScriptIcon} viewBox="0 0 128 128" fontSize="large" title="TypeScript" />,
+    // typescript: <SvgIcon component={TypeScriptIcon} viewBox="0 0 128 128" fontSize="large" title="TypeScript" />,
     javascript: <SvgIcon component={JavaScriptIcon} viewBox="0 0 1024 1024" fontSize="large" title="JavaScript" />,
     mysql: <SvgIcon component={MySQLIcon} viewBox="0 0 1024 1024" fontSize="large" title="MySQL" />,
     php: <SvgIcon component={PHPIcon} viewBox="0 0 128 128" fontSize="large" title="PHP" />,
@@ -129,10 +129,10 @@ const Icons = {
     bicycle_fill: <SvgIcon component={FillBicycleIcon} viewBox="0 0 1024 1024" fontSize="large" title="骑车" />,
     badminton_racket: <SvgIcon component={BadmintonRacketIcon} viewBox="0 0 1055 1024" fontSize="large" title="打羽毛球" style={{ width: '3.7em', height: '3.7em',fill: 'none' }} stroke="currentColor" strokeWidth={3} />,
     badminton: <SvgIcon component={BadmintonIcon} viewBox="0 0 1024 1024" fontSize="large" title="打羽毛球" />,
-    motorcycle: <SvgIcon component={MotorcycleIcon} viewBox="100 0 1024 424" fontSize="large" title="骑摩托" style={{ width: '2.7em', height: '2.7em' }} />,
-    nikon: <SvgIcon component={NikonIcon} viewBox="80 0 800 700" fontSize="large" title="拍照" style={{ width: '3.7em', height: '2.7em' }} />,
+    motorcycle: <SvgIcon component={MotorcycleIcon} viewBox="0 0 1415 748" fontSize="large" title="骑摩托"  />,
+    nikon: <SvgIcon component={NikonIcon} viewBox="0 0 798 204" title="拍照" />,
     canon: <SvgIcon component={CanonIcon} viewBox="0 0 1024 1024" fontSize="large" title="拍照" />,
-    camera_nikon: <SvgIcon component={CameraNikonIcon} viewBox="0 0 1024 1024" fontSize="large" title="拍照" />,
+    nikon_camera: <SvgIcon component={CameraNikonIcon} viewBox="0 0 1024 1024" fontSize="large" title="拍照" />,
     trekking_boy: <SvgIcon component={TrekkingBoyIcon} viewBox="0 0 1024 1024" fontSize="large" title="徒步" />,
 };
 

@@ -60,8 +60,8 @@ const CustomSectionsConfig = [
                 </p>
                 <h4>我喜欢的一些事情</h4>
                 <p className="programming-icons">
-                    {Icons['yxlm']}
-                    {/* {Icons['lol']} */}
+                    {/* {Icons['yxlm']} */}
+                    {Icons['lol']}
                     {Icons['steam']}
                     {Icons['hiking']}
                     {/* {Icons['trekking']} */}
@@ -70,7 +70,7 @@ const CustomSectionsConfig = [
                     {/* {Icons['bicycle']} */}
                     {Icons['bicycle_fill']}
                     {/* {Icons['nikon']} */}
-                    {Icons['camera_nikon']}
+                    {Icons['nikon_camera']}
                     {Icons['badminton']}
                 </p> 
             </>
