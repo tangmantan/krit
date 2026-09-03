@@ -1,7 +1,7 @@
 import { Icons } from './icons';
 
 const CommonConfig = {
-    addNotice: false,
+    addNotice: true,
     name: '谭满堂',
     tagline: '运维工程师',
     signature: {

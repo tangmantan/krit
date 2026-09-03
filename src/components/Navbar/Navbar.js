@@ -18,6 +18,12 @@ const Navbar = () => {
         const newIsDark = document.body.classList.contains('dark-mode');
         setIsDarkMode(newIsDark);
         localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
+        // 更新节假日背景颜色（如果有背景图片的话）
+        if (document.body.style.backgroundImage) {
+            document.body.style.backgroundColor = newIsDark
+                ? 'rgba(25,25,25,0.85)'
+                : 'rgba(255,255,255,0.85)';
+        }
     }, []);
 
     const toggleMenu = useCallback(() => {
