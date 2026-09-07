@@ -5,6 +5,7 @@ import TopSection from './sections/TopSection/TopSection';
 import CustomSections from './sections/CustomSections/CustomSections';
 import Footer from './sections/Footer/Footer';
 import Notice from './components/Notice/Notice';
+import StickerSlap from './components/StickerSlap/StickerSlap';
 import { CustomSectionsConfig, CommonConfig } from './config';
 import { getTodayHolidaySync, getBackgroundImage } from './utils/holiday';
 
@@ -65,11 +66,14 @@ const App = () => {
 
     return (
         <>
+            <StickerSlap />
             {noticeVisible && <Notice onClose={handleNoticeClose} />}
             {!noticeVisible && <Navbar sectionRefs={sectionRefs} />}
-            <TopSection />
-            <CustomSections sectionRefs={sectionRefs} />
-            <Footer />
+            {/* <div className="body-wrapper"> */}
+                <TopSection />
+                <CustomSections sectionRefs={sectionRefs} />
+                <Footer />
+            {/* </div> */}
             <ScrollToTop />
         </>
     );
