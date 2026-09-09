@@ -6,11 +6,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 0;
   pointer-events: none;
   background: transparent;
   z-index: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* CSS 自定义属性动画支持 */

@@ -19,50 +19,62 @@ const StickerSlap = () => {
             "🌈", "👾", "🍩", "✨", "💩", "🍠"
         ];
 
-        // 动态设置 stage 高度为文档高度
-        const updateStageHeight = () => {
-            const docHeight = Math.max(
-                document.body.scrollHeight,
-                document.documentElement.scrollHeight
-            );
-            stage.style.height = `${docHeight}px`;
-        };
-
-        // 初始化高度并监听变化
-        updateStageHeight();
-        window.addEventListener('resize', updateStageHeight);
-        // 使用 MutationObserver 监听 DOM 变化
-        const observer = new MutationObserver(updateStageHeight);
-        observer.observe(document.body, { childList: true, subtree: true });
-
-        // 监听整个文档的点击事件
-        const handlePointerDown = (e) => {
-            // 如果点击的是链接、按钮、输入框等交互元素，则不放置贴纸
-            const target = e.target;
-            if (target.closest('a, button, input, textarea, select, [role="button"]')) {
-                return;
-            }
-
+        // 放置贴纸的函数（使用页面坐标）
+        const placeSticker = (pageX, pageY) => {
             const glyph = palette[Math.floor(Math.random() * palette.length)];
-            // 使用页面坐标（包含滚动偏移）
-            const pageX = e.pageX;
-            const pageY = e.pageY;
-            const stageRect = stage.getBoundingClientRect();
-            const stagePageX = stageRect.left + window.scrollX;
-            const stagePageY = stageRect.top + window.scrollY;
-
             slapper.slap(emojiToImage(glyph), {
-                x: (pageX - stagePageX) / stageRect.width,
-                y: (pageY - stagePageY) / stageRect.height,
+                pageX: pageX,
+                pageY: pageY,
             });
         };
 
+        // 检查是否为交互元素
+        const isInteractiveElement = (target) => {
+            return target.closest('a, button, input, textarea, select, [role="button"]');
+        };
+
+        // 鼠标点击事件（仅处理非触摸设备）
+        const handlePointerDown = (e) => {
+            // 如果是触摸事件，跳过（由 touchend 处理）
+            if (e.pointerType === 'touch') return;
+            if (isInteractiveElement(e.target)) return;
+            placeSticker(e.pageX, e.pageY);
+        };
+
+        // 触摸事件 - 区分滑动和点击
+        let touchStartX = 0;
+        let touchStartY = 0;
+        const TOUCH_THRESHOLD = 10; // 触摸移动阈值
+
+        const handleTouchStart = (e) => {
+            const touch = e.touches[0];
+            touchStartX = touch.pageX;
+            touchStartY = touch.pageY;
+        };
+
+        const handleTouchEnd = (e) => {
+            if (isInteractiveElement(e.target)) return;
+            
+            const touch = e.changedTouches[0];
+            const deltaX = Math.abs(touch.pageX - touchStartX);
+            const deltaY = Math.abs(touch.pageY - touchStartY);
+            
+            // 只有移动距离小于阈值时才认为是点击
+            if (deltaX < TOUCH_THRESHOLD && deltaY < TOUCH_THRESHOLD) {
+                placeSticker(touch.pageX, touch.pageY);
+            }
+        };
+
         document.addEventListener("pointerdown", handlePointerDown);
+        document.addEventListener("touchstart", handleTouchStart, { passive: true });
+        document.addEventListener("touchend", handleTouchEnd);
 
         return () => {
             document.removeEventListener("pointerdown", handlePointerDown);
-            window.removeEventListener('resize', updateStageHeight);
-            observer.disconnect();
+            document.removeEventListener("touchstart", handleTouchStart);
+            document.removeEventListener("touchend", handleTouchEnd);
+            // 清理 slapper 的事件监听器
+            slapper.destroy();
         };
     }, []);
 
@@ -73,9 +85,24 @@ const StickerSlap = () => {
 
 // ========== 贴纸效果核心逻辑 ==========
 
+/**
+ * 获取适合当前屏幕的贴纸尺寸范围
+ * @returns {Array} [最小尺寸, 最大尺寸]
+ */
+function getStickerSize() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 480) {
+        return [30, 100]; // 手机小屏
+    } else if (screenWidth <= 768) {
+        return [40, 180]; // 手机/小平板
+    } else {
+        return [50, 500]; // 桌面端
+    }
+}
+
 /** 贴纸配置常量 */
 const SETTINGS = {
-    size: [50, 500], // 贴纸尺寸范围 [最小, 最大]
+    size: getStickerSize, // 动态获取尺寸范围
     x: null,
     y: null,
     rotation: null,
@@ -117,9 +144,14 @@ function rand(lo, hi) {
     return lo + Math.random() * (hi - lo);
 }
 
-/** 解析尺寸配置 */
+/**
+ * 解析尺寸配置
+ * @param {Array|Function} size - 尺寸范围或获取尺寸的函数
+ * @returns {number} 解析后的尺寸值
+ */
 function resolveSize(size) {
-    return Array.isArray(size) ? Math.round(rand(size[0], size[1])) : size;
+    const sizeRange = typeof size === 'function' ? size() : size;
+    return Array.isArray(sizeRange) ? Math.round(rand(sizeRange[0], sizeRange[1])) : sizeRange;
 }
 
 /** emoji 正则匹配 */
@@ -216,9 +248,22 @@ class StickerSlapClass {
         this.stage = stage;
         this.defaults = { ...SETTINGS, ...options };
         this.stickers = [];
+        this.maxStickers = 30; // 最大贴纸数量
+        this.stageRect = null; // 缓存 stage 位置
+        this._updateStageRect();
 
         const cs = getComputedStyle(stage);
         if (cs.position === "static") stage.style.position = "relative";
+
+        // 监听滚动和 resize 更新缓存
+        this._handleUpdate = () => this._updateStageRect();
+        window.addEventListener('scroll', this._handleUpdate, { passive: true });
+        window.addEventListener('resize', this._handleUpdate, { passive: true });
+    }
+
+    /** 更新 stage 位置缓存 */
+    _updateStageRect() {
+        this.stageRect = this.stage.getBoundingClientRect();
     }
 
     /**
@@ -230,6 +275,12 @@ class StickerSlapClass {
     async slap(source, opts = {}) {
         const o = { ...this.defaults, ...opts };
         o.size = resolveSize(o.size);
+
+        // 限制贴纸数量，移除最旧的
+        while (this.stickers.length >= this.maxStickers) {
+            const old = this.stickers.shift();
+            old.remove();
+        }
 
         const el = this._createSticker(toImageSrc(source), o);
         this.stage.appendChild(el);
@@ -246,6 +297,13 @@ class StickerSlapClass {
         this.stickers = [];
     }
 
+    /** 销毁实例，清理事件监听器 */
+    destroy() {
+        window.removeEventListener('scroll', this._handleUpdate);
+        window.removeEventListener('resize', this._handleUpdate);
+        this.clear();
+    }
+
     /** 简化贴纸元素，移除动画相关属性 */
     _settle(el) {
         const flat = el.querySelector(".sticker__flat");
@@ -253,19 +311,33 @@ class StickerSlapClass {
             "--span", "--big", "--s", "--ca", "--a", "--b", "--d", "--p"];
         for (const name of vars) el.style.removeProperty(name);
         el.replaceChildren(flat);
-        el.style.transform = `rotate(${el._restRotation}deg)`;
+        // 保持 translate3d 位置
+        const currentTransform = el.style.transform;
+        const translateMatch = currentTransform.match(/translate3d\([^)]*\)/);
+        const translate = translateMatch ? translateMatch[0] : '';
+        el.style.transform = `${translate} rotate(${el._restRotation}deg)`;
     }
 
     /** 创建贴纸 DOM 元素 */
     _createSticker(src, o) {
-        const rect = this.stage.getBoundingClientRect();
         const S = o.size;
 
-        const fx = o.x == null ? Math.random() : clamp01(o.x);
-        const fy = o.y == null ? Math.random() : clamp01(o.y);
-        const half = S / 2;
-        const left = clamp(fx * rect.width, half, rect.width - half) - half;
-        const top = clamp(fy * rect.height, half, rect.height - half) - half;
+        // 使用页面坐标或随机位置
+        let left, top;
+        if (o.pageX !== undefined && o.pageY !== undefined) {
+            // 使用缓存的 stage 位置
+            const stagePageX = this.stageRect.left + window.scrollX;
+            const stagePageY = this.stageRect.top + window.scrollY;
+            left = o.pageX - stagePageX - S / 2;
+            top = o.pageY - stagePageY - S / 2;
+        } else {
+            // 随机位置（备用）
+            const fx = o.x == null ? Math.random() : clamp01(o.x);
+            const fy = o.y == null ? Math.random() : clamp01(o.y);
+            const half = S / 2;
+            left = clamp(fx * this.stageRect.width, half, this.stageRect.width - half) - half;
+            top = clamp(fy * this.stageRect.height, half, this.stageRect.height - half) - half;
+        }
 
         const rest = o.rotation == null ? rand(-12, 12) : o.rotation;
         const angle =
@@ -283,11 +355,14 @@ class StickerSlapClass {
         const el = document.createElement("div");
         el.className = "sticker";
         el.dataset.id = `sticker-${++uid}`;
+        // 使用 transform 定位，利用 GPU 加速
         Object.assign(el.style, {
-            left: `${left}px`,
-            top: `${top}px`,
+            position: 'absolute',
+            left: '0',
+            top: '0',
             width: `${S}px`,
             height: `${S}px`,
+            transform: `translate3d(${left}px, ${top}px, 0)`,
         });
 
         setVars(el, {
@@ -332,12 +407,14 @@ class StickerSlapClass {
     /** 执行贴纸入场动画 */
     _animateIn(el, o) {
         const rest = el._restRotation;
+        // 保持 translate3d 位置
+        const baseTransform = el.style.transform.replace(/rotate\([^)]*\)/, '').trim();
 
         const entrance = el.animate(
             [
-                { offset: 0, transform: `rotate(${rest}deg) scale(1.06)`, opacity: 0 },
-                { offset: 0.2, transform: `rotate(${rest}deg) scale(1.0)`, opacity: 1 },
-                { offset: 1, transform: `rotate(${rest}deg) scale(1.0)`, opacity: 1 },
+                { offset: 0, transform: `${baseTransform} rotate(${rest}deg) scale(1.06)`, opacity: 0 },
+                { offset: 0.2, transform: `${baseTransform} rotate(${rest}deg) scale(1.0)`, opacity: 1 },
+                { offset: 1, transform: `${baseTransform} rotate(${rest}deg) scale(1.0)`, opacity: 1 },
             ],
             { duration: o.duration, easing: "ease-out", fill: "both" },
         );
@@ -349,7 +426,7 @@ class StickerSlapClass {
 
         return Promise.all([entrance.finished, unroll.finished]).then(() => {
             el.style.setProperty("--p", "1");
-            el.style.transform = `rotate(${rest}deg)`;
+            el.style.transform = `${baseTransform} rotate(${rest}deg)`;
             cancelSafe(entrance);
             cancelSafe(unroll);
             this._settle(el);
