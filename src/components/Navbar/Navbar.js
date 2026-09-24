@@ -65,12 +65,12 @@ const Navbar = () => {
                                 </a>
                                 <a
                                     className="navbar-dropdown-item"
-                                    href="https://docs.tanmantang.com"
+                                    href="https://navi.tanmantang.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     <DescriptionIcon className="dropdown-item-icon" />
-                                    <span>文档中心</span>
+                                    <span>Navi</span>
                                 </a>
                             </div>
                         </div>
