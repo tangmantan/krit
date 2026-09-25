@@ -72,7 +72,7 @@ const Notice = ({ onClose }) => {
                     <br />
                     {displayNextText}
                 </h1>
-                
+                {/*  
                 <CircleButton link="https://news.cctv.com/" tooltip="央视新闻">
                     {Icons['cctv_news']}
                 </CircleButton>
@@ -85,6 +85,7 @@ const Notice = ({ onClose }) => {
                 <CircleButton link="https://www.bilibili.com/video/BV1Au4y1N7Pe?t=6.1" tooltip="观看视频">
                     {Icons['bilibili']}
                 </CircleButton>
+                */}
             </div>
             <CircleButton className="to-website" onClick={handleClose} size={4} tooltip="回到主页" style={{ border: 'none' }}>
                 <ChevronRight />
