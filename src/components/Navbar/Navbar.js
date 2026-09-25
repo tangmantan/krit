@@ -70,7 +70,7 @@ const Navbar = () => {
                                     rel="noopener noreferrer"
                                 >
                                     <DescriptionIcon className="dropdown-item-icon" />
-                                    <span>Navi</span>
+                                    <span>Navi导航</span>
                                 </a>
                             </div>
                         </div>
