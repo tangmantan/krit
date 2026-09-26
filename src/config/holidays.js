@@ -28,7 +28,7 @@ const HolidaysConfig = [
         name: '生日',
         text: '生日快乐',
         color: '#ff69b4', // 粉色，温馨浪漫
-        background: 'sr.png',
+        background: 'https://tanmantang.oss-cn-chengdu.aliyuncs.com/www/sr.png',
         type: 'lunar',
         month: 8,
         day: 16,
@@ -40,7 +40,7 @@ const HolidaysConfig = [
         text: '中秋节快乐',
         nextText: '祝您：月圆人安，岁岁团圆',
         color: '#ffa500', // 橙黄色，象征明月和团圆
-        background: 'zq.png',
+        background: 'https://tanmantang.oss-cn-chengdu.aliyuncs.com/www/zq.png',
         type: 'lunar',
         month: 8,
         day: 15,
@@ -52,7 +52,7 @@ const HolidaysConfig = [
         text: '国庆节快乐',
         nextText: '家国同庆，盛世安康',
         color: '#ff0000', // 红色，中国国旗主色
-        background: 'gq.png',
+        background: 'https://tanmantang.oss-cn-chengdu.aliyuncs.com/www/gq.png',
         type: 'solar',
         month: 10,
         day: 1,
@@ -64,7 +64,7 @@ const HolidaysConfig = [
         text: '新春快乐',
         nextText: '祝您：新年吉祥，好运连连',
         color: '#ff4500', // 红金色，喜庆热烈
-        background: 'cj.png',
+        background: 'https://tanmantang.oss-cn-chengdu.aliyuncs.com/www/cj.png',
         type: 'lunar',
         month: 1,
         day: 1,
