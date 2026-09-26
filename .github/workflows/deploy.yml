@@ -33,9 +33,8 @@ jobs:
       
     - name: Build project
       run: npm run build
-      env:
-        # 如果使用环境变量，可以在这里设置
-        PUBLIC_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+      # 不设置 PUBLIC_URL，使用 package.json 的 homepage: "./"（相对路径），
+      # 避免构建产物引用 github.io 绝对地址导致自定义域名下 CORS 报错
         
     - name: Upload build artifacts
       uses: actions/upload-pages-artifact@v3
