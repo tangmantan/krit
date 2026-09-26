@@ -33,9 +33,9 @@ const StickerSlap = () => {
             return target.closest('a, button, input, textarea, select, [role="button"]');
         };
 
-        // 检查是否在 Notice 公告页内（Notice 显示期间禁用贴纸）
+        // 检查是否在 Notice 公告页或导航栏内（这些区域禁用贴纸）
         const isInNotice = (target) => {
-            return target.closest('.notice');
+            return target.closest('.notice, .navbar');
         };
 
         // 鼠标点击事件（仅处理非触摸设备）

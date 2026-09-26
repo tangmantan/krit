@@ -1,3 +1,9 @@
 .footer {
     text-align: center;
+
+    // 只提升按钮的层级，避免被贴纸遮挡；文字仍允许贴纸覆盖
+    .social-links {
+        position: relative;
+        z-index: 1;
+    }
 }
