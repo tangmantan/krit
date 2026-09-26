@@ -15,7 +15,7 @@ const StickerSlap = () => {
         const slapper = new StickerSlapClass(stage);
 
         const palette = [
-            "🎉", "🔥", "💖", "⭐", "🦖", "🍕",
+            "🎉", "🔥", "🤣", "😍", "🦖", "🍕","🐮",
             "🌈", "👾", "🍩", "✨", "💩", "🍠"
         ];
 
@@ -33,11 +33,17 @@ const StickerSlap = () => {
             return target.closest('a, button, input, textarea, select, [role="button"]');
         };
 
+        // 检查是否在 Notice 公告页内（Notice 显示期间禁用贴纸）
+        const isInNotice = (target) => {
+            return target.closest('.notice');
+        };
+
         // 鼠标点击事件（仅处理非触摸设备）
         const handlePointerDown = (e) => {
             // 如果是触摸事件，跳过（由 touchend 处理）
             if (e.pointerType === 'touch') return;
             if (isInteractiveElement(e.target)) return;
+            if (isInNotice(e.target)) return;
             placeSticker(e.pageX, e.pageY);
         };
 
@@ -54,6 +60,7 @@ const StickerSlap = () => {
 
         const handleTouchEnd = (e) => {
             if (isInteractiveElement(e.target)) return;
+            if (isInNotice(e.target)) return;
             
             const touch = e.changedTouches[0];
             const deltaX = Math.abs(touch.pageX - touchStartX);
@@ -248,7 +255,7 @@ class StickerSlapClass {
         this.stage = stage;
         this.defaults = { ...SETTINGS, ...options };
         this.stickers = [];
-        this.maxStickers = 30; // 最大贴纸数量
+        this.maxStickers = 50; // 最大贴纸数量
         this.stageRect = null; // 缓存 stage 位置
         this._updateStageRect();
 
