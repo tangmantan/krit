@@ -7,6 +7,17 @@
     "use strict";
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    /* ---------- 修复刷新时页面向上滚动的问题 ---------- */
+    /* 全局 scroll-behavior:smooth 会让浏览器刷新时的滚动位置恢复变成动画，
+       这里加载期间临时设为 auto，加载完成后再恢复平滑滚动 */
+    var html = document.documentElement;
+    html.style.scrollBehavior = "auto";
+    window.addEventListener("load", function() {
+        setTimeout(function() {
+            html.style.scrollBehavior = "";
+        }, 100);
+    });
+
     /* ---------- sound engine ---------- */
     /* an AudioContext only starts on a real activation, so the control shows a pending
        state and an honest cue until resume() actually reports running */

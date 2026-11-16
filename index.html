@@ -10,6 +10,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Celadon - 将客户反馈打造成产品路线图</title>
         <meta name="description" content="">
+        <!-- 防止刷新时页面平滑滚动（浏览器恢复滚动位置时的动画），必须在 body 渲染前执行 -->
+        <script>
+            document.documentElement.style.scrollBehavior = "auto";
+            if ("scrollRestoration" in history) {
+                history.scrollRestoration = "manual";
+            }
+        </script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&family=Albert+Sans:wght@400;500;600&display=swap"
