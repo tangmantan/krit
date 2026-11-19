@@ -18,6 +18,45 @@
         }, 100);
     });
 
+    /* ---------- theme switch ---------- */
+    /* 主题初始值已在 <head> 的内联脚本中写入 html[data-theme]，
+       这里负责按钮状态同步与点击切换，用户选择会持久化到 localStorage */
+    var themeBtn = document.getElementById("themeToggle");
+
+    /**
+     * 应用主题：写入 html[data-theme]，并同步按钮文字与无障碍属性
+     * @param {string} theme - "light" 或 "dark"
+     */
+    function applyTheme(theme) {
+        html.setAttribute("data-theme", theme);
+        if (!themeBtn) return;
+        var dark = theme === "dark";
+        themeBtn.textContent = dark ? "暗色模式" : "亮色模式";
+        themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+        var label = dark ? "切换到亮色模式" : "切换到暗色模式";
+        themeBtn.setAttribute("aria-label", label);
+        themeBtn.setAttribute("title", label);
+    }
+
+    /**
+     * 读取当前生效的主题
+     * @returns {string} "light" 或 "dark"
+     */
+    function currentTheme() {
+        return html.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    }
+
+    if (themeBtn) {
+        applyTheme(currentTheme());
+        themeBtn.addEventListener("click", function() {
+            var next = currentTheme() === "dark" ? "light" : "dark";
+            applyTheme(next);
+            try {
+                localStorage.setItem("theme", next);
+            } catch (e) {}
+        });
+    }
+
     /* ---------- sound engine ---------- */
     /* an AudioContext only starts on a real activation, so the control shows a pending
        state and an honest cue until resume() actually reports running */
@@ -954,7 +993,7 @@
         sigPath.style.strokeDashoffset = sigLen;
         // 强制 reflow，确保从完全隐藏的状态过渡
         void sigPath.getBoundingClientRect();
-        sigPath.style.transition = "stroke-dashoffset 3s linear .1s";
+        sigPath.style.transition = "stroke-dashoffset 4.5s linear .1s";
         sigPath.style.strokeDashoffset = "0";
     }
 })();
