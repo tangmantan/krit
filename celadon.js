@@ -57,6 +57,68 @@
         });
     }
 
+    /* ---------- inline chip icons ---------- */
+    /* <img src="xxx.svg"> 里的 SVG 是独立 document，外部 CSS 管不了 fill。
+       这里 fetch 每个 SVG 文件、DOM 解析、给缺失 fill 的 path 补 fill="currentColor"，
+       然后内联注入。这样就能用 CSS 的 color 统一控制图标颜色，深浅主题自动切换。
+       规则：只在 fill 缺失 / 空字符串 / "none" 时补 currentColor，绝不覆盖已有 fill，
+       保持 SVG 原生的多彩表达（如果将来有品牌色图标也不会被强制单色化）。 */
+    (function inlineChipIcons() {
+        var holders = document.querySelectorAll(".chip-ico[data-src]");
+        if (!holders.length) return;
+        var SVG_COLORABLE = "path circle ellipse polygon polyline line rect g";
+
+        /**
+         * 判断节点是否需要补 fill 或 stroke
+         * @param {Element} el
+         * @param {'fill'|'stroke'} prop
+         * @returns {boolean} true 表示需要补 currentColor
+         */
+        function needsCurrentColor(el, prop) {
+            var val = el.getAttribute(prop);
+            if (!val) return true;              // 缺失
+            if (val === "" || val === "none") return true;  // 空或显式 none
+            return false;
+        }
+
+        /**
+         * 把 fetch 回来的 SVG 字符串内联到 holder 位置，并让颜色继承 currentColor
+         * @param {Element} holder
+         */
+        function fetchAndInline(holder) {
+            var url = holder.getAttribute("data-src");
+            if (!url) return;
+            fetch(url)
+                .then(function(res) {
+                    if (!res.ok) throw new Error("HTTP " + res.status + " for " + url);
+                    return res.text();
+                })
+                .then(function(text) {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(text, "image/svg+xml");
+                    var svg = doc.querySelector("svg");
+                    if (!svg) return;
+                    svg.removeAttribute("width");
+                    svg.removeAttribute("height");
+                    svg.setAttribute("class", holder.getAttribute("class") || "");
+                    svg.setAttribute("aria-hidden", holder.getAttribute("aria-hidden") || "true");
+                    if (needsCurrentColor(svg, "fill")) svg.setAttribute("fill", "currentColor");
+                    var nodes = svg.querySelectorAll(SVG_COLORABLE);
+                    for (var i = 0; i < nodes.length; i++) {
+                        var n = nodes[i];
+                        if (needsCurrentColor(n, "fill")) n.setAttribute("fill", "currentColor");
+                        if (needsCurrentColor(n, "stroke")) n.setAttribute("stroke", "currentColor");
+                    }
+                    holder.replaceWith(svg);
+                })
+                .catch(function(err) {
+                    console.warn('[celadon] fetch failed:', url, err && err.message);
+                });
+        }
+
+        for (var h = 0; h < holders.length; h++) fetchAndInline(holders[h]);
+    })();
+
     /* ---------- sound engine ---------- */
     /* an AudioContext only starts on a real activation, so the control shows a pending
        state and an honest cue until resume() actually reports running */
