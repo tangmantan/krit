@@ -914,6 +914,52 @@
         measure();
     }
 
+    /* ---------- random quote palette ---------- */
+    /**
+     * 为每张 article.quote 生成一组协调的随机配色，通过 CSS 变量注入。
+     * 使用 HSL 色彩空间保证：
+     *   - 卡片背景统一偏亮（L 83%-97%），保持整体页面明亮基调
+     *   - accent（face / dot / icon）与背景同色相，L 差拉开形成渐变层次
+     *   - 同一 article 内的所有装饰元素共享同一色相，保证卡片视觉统一
+     */
+    (function randomizeQuotePalette() {
+        var quotes = document.querySelectorAll(".quote");
+        if (!quotes.length) return;
+
+        /** 生成 [min, max] 范围内的随机数 */
+        function rand(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        /** 把 HSL 三元组序列化成 hsl() CSS 字符串 */
+        function hsl(h, s, l) {
+            return "hsl(" + h.toFixed(1) + "," + s.toFixed(1) + "%," + l.toFixed(1) + "%)";
+        }
+
+        var count = quotes.length;
+        // 把色相环 360° 均匀分给每张卡片，保证相邻卡片颜色差异足够大
+        // 再加 ±15° 小抖动避免色调排布过于机械
+        for (var i = 0; i < count; i++) {
+            var card = quotes[i];
+            // 基础色相：沿 360° 均匀分布，加少量随机抖动
+            var baseHue = (360 / count) * i;
+            var hue = (baseHue + rand(-15, 15) + 360) % 360;
+            var sat = rand(30, 50);
+
+            // 卡片背景：三层渐变，L 整体上移，制造近乎白的淡色底色
+            card.style.setProperty("--q-bg-a", hsl(hue, Math.max(sat - 12, 12), rand(95, 98)));
+            card.style.setProperty("--q-bg-b", hsl(hue, sat, rand(91, 95)));
+            card.style.setProperty("--q-bg-c", hsl(hue, sat, rand(87, 91)));
+
+            // accent 渐变（.face / .co i 的背景）：同色相，L 整体上移，保持柔和
+            card.style.setProperty("--q-accent-a", hsl(hue, sat, rand(78, 86)));
+            card.style.setProperty("--q-accent-b", hsl(hue, Math.min(sat + 8, 65), rand(62, 72)));
+
+            // groove：比卡片背景稍暗，保持 sunk 凹陷效果，但 L 上移
+            card.style.setProperty("--q-groove", hsl(hue, Math.max(sat - 8, 12), rand(86, 92)));
+        }
+    })();
+
     /* ---------- delegated interface voices ---------- */
     window.addEventListener("click", function(e) {
         if (e.target.closest(".sbtn")) return;
