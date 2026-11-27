@@ -35,9 +35,10 @@
                 <a class="brand" href="#home"><span class="mark" aria-hidden="true"></span>谭满堂</a>
                         
                 <nav class="nav">
-                    <a href="https://oreo.tanmantang.com/">旅行相册</a>
+                    <!-- <a href="https://oreo.tanmantang.com/">旅行相册</a> -->
+                    <!-- <a href="https://oreo.tanmantang.com/">旅行相册</a>
                     <a href="https://car.tanmantang.com/">用车成本</a>
-                    <a href="https://navi.tanmantang.com/">Navi导航</a>
+                    <a href="https://navi.tanmantang.com/">Navi导航</a> -->
                 </nav>
                 <!-- <div class="switch" id="switch" role="switch" tabindex="0" aria-checked="false" aria-label="Switch to yearly billing">
                     <span class="knob"></span>
@@ -46,7 +47,7 @@
                         id="themeToggle"
                         type="button"
                         aria-pressed="false"
-                        aria-label="切换到暗色模式">亮色模式</button>
+                        aria-label="切换到暗色模式">暗色模式</button>
                 <button class="burger"
                         id="burger"
                         aria-label="打开菜单"
@@ -62,7 +63,11 @@
             <a href="https://oreo.tanmantang.com/">旅行相册</a>
             <a href="https://car.tanmantang.com/">用车成本</a>
             <a href="https://navi.tanmantang.com/">Navi导航</a>
-            <a class="btn solid" href="#start">免费开始</a>
+            <button class="btn solid"
+                    id="drawerTheme"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="切换到暗色模式">暗色模式</button>
         </aside>
         <main>
             <section class="sig-hero rv" id="home">
@@ -143,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="stave open" role="button" tabindex="0" aria-expanded="false">
+                        <div class="stave" role="button" tabindex="0" aria-expanded="false">
                             <div class="spine"><span class="pip t-sky"></span><span class="st">北京并行科技股份有限公司</span></div>
                             <div class="bodywrap">
                                 <div class="body">
@@ -202,9 +207,9 @@
                         <div class="stat"><b data-to="95" data-suffix="%">0%</b><span>服务可用性持续保障</span></div>
                         <div class="stat"><b data-to="4" data-suffix=" 分钟">0 分钟</b><span>业务环境问题定位</span></div>
                         <div class="stat"><b data-to="999" data-suffix="+">0+</b><span>技术问题沉淀复盘</span></div>
-                        <div class="stat"><b data-to="56" data-suffix="+">0+</b><span>Steam游戏</span></div>
+                        <!-- <div class="stat"><b data-to="56" data-suffix="+">0+</b><span>Steam游戏</span></div>
                         <div class="stat"><b data-to="3" data-suffix="年">0 年</b><span>拍照技术</span></div>
-                        <div class="stat"><b data-to="200" data-suffix="+ 公里">0</b><span>徒步线路</span></div>
+                        <div class="stat"><b data-to="200" data-suffix="+ 公里">0</b><span>徒步线路</span></div> -->
                     </div>
                 </div>
             </section>
@@ -256,7 +261,7 @@
                                     <div><b>张三</b><span>总裁 & 技术总监</span></div>
                                 </div>
                             </article>
-                            <article class="quote">
+                            <article class="quote ti">
                                 <div class="qtop"><span class="co"><i class="t-coral"></i>The University of Sussex GeNN Team</span></div>
                                 <blockquote>
                                     I have really appreciated your confidence to solve problems yourself and follow your own intuition even when it goes against what I was suggesting. I feel you were mostly right :)
@@ -268,17 +273,17 @@
                                 </div>
                             </article>
                             <article class="quote tint">
-                                <div class="qtop"><span class="co"><i class="t-sky"></i>招商局重庆交通科研设计院</span></div>
+                                <div class="qtop"><span class="co"><i class="t-jade"></i>招商局重庆交通科研设计院</span></div>
                                 <blockquote>
                                     谭满堂精通Linux集群运维，能够搭建稳定算力底座支撑科研仿真，故障排查高效，善于结合业务需求持续优化基础设施。自研脚本优化算力调度策略，资源利用率提升明显，处理集群故障冷静且高效。
                                 </blockquote>
                                 <div class="groove"></div>
                                 <div class="who">
-                                    <span class="face t-sky">李</span>
+                                    <span class="face t-jade">李</span>
                                     <div><b>李伟</b><span>技术部经理</span></div>
                                 </div>
                             </article>
-                            <article class="quote tint">
+                            <article class="quote">
                                 <div class="qtop"><span class="co"><i class="t-sky"></i>北京并行科技股份有限公司</span></div>
                                 <blockquote>
                                     熟悉Shell自动化开发，具备全栈技术视野，乐于探索AI Agent相关实践，善于结合反馈持续迭代运维工具。
@@ -289,25 +294,25 @@
                                     <div><b>徐洋</b><span>客户技术负责人</span></div>
                                 </div>
                             </article>
-                            <article class="quote tint">
-                                <div class="qtop"><span class="co"><i class="t-jade"></i>好友评价</span></div>
+                            <article class="quote ti">
+                                <div class="qtop"><span class="co"><i class="t-coral"></i>好友评价</span></div>
                                 <blockquote>
                                     热爱徒步骑行，喜欢探索山野，相处随性舒服，拍照很有想法，总能发现身边有意思的风景。
                                 </blockquote>
                                 <div class="groove"></div>
                                 <div class="who">
-                                    <span class="face t-jade">胡</span>
-                                    <div><b>胡亮</b><span>多年好友</span></div>
+                                    <span class="face t-coral">亮</span>
+                                    <div><b>亮哥</b><span>多年好友</span></div>
                                 </div>
                             </article>
                             <article class="quote tint">
-                                <div class="qtop"><span class="co"><i class="t-sky"></i>摄影同好</span></div>
+                                <div class="qtop"><span class="co"><i class="t-jade"></i>摄影同好</span></div>
                                 <blockquote>
                                     他喜欢用镜头记录日常与山野风光，审美独特，愿意分享所见，对待爱好保持长久热情。
                                 </blockquote>
                                 <div class="groove"></div>
                                 <div class="who">
-                                    <span class="face t-sky">程</span>
+                                    <span class="face t-jade">程</span>
                                     <div><b>程诺</b><span>摄影同好</span></div>
                                 </div>
                             </article>
@@ -315,146 +320,15 @@
                     </div>
                 </div>
             </section>
-
-            <!-- hero -->
-            <section class="hero">
-                <div class="shell">
-                    <span class="pill rv"><b>新功能</b> 与 Linear 双向同步</span>
-                    <h1 class="rv d1">反馈，终于成形。</h1>
-                    <p class="sub rv d2">Celadon 从所有隐藏渠道中提取客户反馈，并将其归纳为团队真正可以着手处理的核心主题。</p>
-                    <div class="stage rv d3" aria-hidden="true">
-                        <div class="slab s1" data-depth="14">
-                            <span class="src"><i class="dot" style="background:var(--sky)"></i>Zendesk</span>
-                            <p>"报告页面能不能加个 CSV 导出功能？"</p>
-                        </div>
-                        <div class="slab s2" data-depth="-18">
-                            <span class="src"><i class="dot" style="background:var(--coral)"></i>销售通话</span>
-                            <p>"他们不让财务拉原始数据就不肯签合同。"</p>
-                        </div>
-                        <div class="slab s3" data-depth="-11">
-                            <span class="src"><i class="dot" style="background:var(--jade)"></i>Slack</span>
-                            <p>"这周已经是第三个客户问怎么导出数据了。"</p>
-                        </div>
-                        <div class="slab s4" data-depth="16">
-                            <span class="src"><i class="dot" style="background:#F0C980"></i>应用评论</span>
-                            <p>"应用很棒，但我的数据好像被困在里面出不来。"</p>
-                        </div>
-                        <div class="core" data-depth="7">
-                            <span class="lab">主题</span>
-                            <h3>从 Celadon 导出数据</h3>
-                            <div class="meter">
-                                <i></i>
-                            </div>
-                            <div class="row"><span>请求数</span><b>218</b></div>
-                            <div class="row"><span>受影响账户</span><b>34</b></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- faq -->
-            <section class="pad" id="faq">
-                <div class="shell center">
-                    <span class="eyebrow rv">常见问题</span>
-                    <h2 class="h2 rv">这些问题被问得太多，索性放这里。</h2>
-                </div>
-                <div class="shell">
-                    <div class="faq">
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>我能把已有的反馈导入进来吗？</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>可以。上传 CSV 或连接一个工具，Celadon 会读取全部历史数据，不只是今天到达的内容。大多数团队在第一天下午就能导入好几年的数据。</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>自动主题归类的准确度如何？</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>大约 94% 的项目在无人干预的情况下归入主题。剩下的会进入审核队列，每个分组都可以手动拆分、合并或重命名。</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>它会写入我的问题跟踪工具吗？</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>会的。将一个主题推送到 Linear 或 Jira，问题会带着摘要和回溯链接。当问题关闭时，Celadon 会标记该主题已交付，并安排回复。</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>试用期结束后会发生什么？</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>工作区变为只读。不会删除任何内容，你随时可以将所有数据导出为 CSV 或 JSON，包括离开之后。</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>客户数据会用于训练模型吗？</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>不会。你的反馈仅用于构建你的主题，除此之外不作他用。数据留在你设置时选择的区域，企业版还提供每次读取的审计日志。</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="q rv" role="button" tabindex="0" aria-expanded="false">
-                            <div class="qh">
-                                <h3>我们只有两个人，这个工具会不会太重了？</h3>
-                                <span class="plus"></span>
-                            </div>
-                            <div class="qb">
-                                <div>
-                                    <p>小团队从闭环回复中获益最多，因为没人有空去追踪旧线程。从个人版开始，等反馈条数多了再升级。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- closing cta -->
-            <section class="pad" id="start">
-                <div class="shell">
-                    <div class="close-plate rv">
-                        <span class="eyebrow">开始使用</span>
-                        <h2>用你一周的反馈来试试。</h2>
-                        <p class="lede">连接一个渠道，看看会有什么发现。如果主题分类不对，一小时内你就能知道。</p>
-                        <div class="form">
-                            <input class="field"
-                                   type="email"
-                                   placeholder="you@company.com"
-                                   aria-label="工作邮箱">
-                            <button class="btn solid" type="button" id="create">创建账户</button>
-                        </div>
-                        <p class="note">14 天免费试用。在设置页面点击两次即可取消。</p>
-                    </div>
-                </div>
-            </section>
         </main>
         <footer class="foot">
             <div class="shell">
                 <div class="footbar">
-                    <p>&copy; 2026 Celadon. 免费 HTML 模板。</p>
-                    <p>设计出自 <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a> <a rel="nofollow noopener"
-    href="https://www.tooplate.com"
-    target="_blank">Tooplate</a></p>
+                    <p>&copy; 2026 tanmantang. All rights reserved.</p>
+                    <a href="https://oreo.tanmantang.com" target="_blank">旅行相册</a>
+                    <a href="https://car.tanmantang.com" target="_blank">用车成本</a>
+                    <a href="https://navi.tanmantang.com" target="_blank">Navi导航</a>
+                    <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a>
                 </div>
             </div>
         </footer>

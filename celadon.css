@@ -41,7 +41,18 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--bar) + 22px);
     scrollbar-gutter: stable;
-    overflow-x: hidden
+    overflow-x: hidden;
+    /* 隐藏页面主滚动条，仍保留滚轮 / 键盘 / 触摸滚动能力 */
+    scrollbar-width: none;
+    -ms-overflow-style: none
+}
+
+/* WebKit / Blink 下隐藏主滚动条，抽屉内自定义滚动条不受影响 */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none
 }
 
 body {
@@ -189,7 +200,7 @@ section {
 
 .lede {
     color: var(--ink-2);
-    max-width: 52ch;
+    /* max-width: 52ch; */
     margin-top: 16px
 }
 
@@ -603,12 +614,18 @@ section {
     box-shadow: var(--well)
 }
 
+/* 抽屉里的主题切换按钮，视觉上沿用抽屉链接的排版（同样是整行的大胶囊） */
 .drawer .btn {
     display: flex;
     width: 100%;
     justify-content: center;
+    padding: 14px 18px;
+    border-radius: var(--r-sm);
+    font-size: 1.15rem;
+    font-weight: 500;
     color: #123F33;
-    margin-top: 20px
+    margin-top: 20px;
+    margin-bottom: 6px
 }
 
 .drawer .dtag {
@@ -661,7 +678,7 @@ body.lock {
 .hero h1 {
     font-size: clamp(2.6rem, 7vw, 4.9rem);
     margin: 26px auto 0;
-    max-width: 14ch;
+    /* max-width: 14ch; */
     font-weight: 200
 }
 
@@ -852,6 +869,8 @@ body.lock {
 
 .slabrow {
     display: flex;
+    /* 收起状态下的几个窄条整体居中，与上方标题对齐 */
+    justify-content: center;
     gap: 12px;
     margin-top: 44px;
     height: 470px;
@@ -1391,6 +1410,13 @@ html[data-theme="dark"] .chip-photo  svg.chip-ico {
         var(--q-bg-c, #E4F0EC))
 }
 
+.quote.ti {
+    background: linear-gradient(158deg,
+        var(--q-accent-a, #fff1ee),
+        var(--q-accent-b, #f2e5e2) 48%,
+        var(--q-accent-c, #f8ddd7))
+}
+
 .qtop {
     display: flex;
     align-items: center;
@@ -1832,8 +1858,9 @@ html[data-theme="dark"] .chip-photo  svg.chip-ico {
 .footbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 18px;
+    /* 版权文字靠左，链接成组紧挨着排在右侧 */
+    justify-content: flex-start;
+    gap: 2px;
     flex-wrap: wrap;
     padding: 20px 26px;
     border-radius: 99px;
@@ -1842,6 +1869,7 @@ html[data-theme="dark"] .chip-photo  svg.chip-ico {
 }
 
 .footbar p {
+    margin-right: auto;
     font-size: .86rem;
     color: var(--ink-2);
     display: flex;
@@ -1851,39 +1879,29 @@ html[data-theme="dark"] .chip-photo  svg.chip-ico {
     justify-content: center
 }
 
+/* 页脚链接沿用页头导航 .nav a 的胶囊样式：无实体底板，悬停时浮出浅底 + 内阴影 */
 .footbar a {
+    position: relative;
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    color: var(--ink);
-    font-weight: 600;
-    font-size: .82rem;
-    padding: 7px 15px;
+    font-size: .92rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    padding: 9px 15px;
     border-radius: 99px;
-    background-image: var(--sheen), var(--gloss);
-    background-size: 240% 100%, 100% 100%;
-    background-position: -135% 0, 0 0;
-    background-repeat: no-repeat;
-    box-shadow: 0 6px 11px -8px rgba(35, 45, 60, .6), var(--lip);
-    transition: transform .24s var(--ease), box-shadow .24s var(--ease), background-image .16s linear, background-position 0s;
+    transition: color .2s, box-shadow .25s var(--ease), background .25s
 }
 
 .footbar a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 18px -10px rgba(35, 45, 60, .65), var(--lip);
-    background-position: 135% 0, 0 0;
-    transition: transform .24s var(--ease), box-shadow .24s var(--ease), background-position .85s var(--ease);
-}
-
-.footbar a:active {
-    transform: translateY(1px);
-    background-image: var(--sheen), var(--gloss-down);
-    box-shadow: var(--sink)
+    color: var(--ink);
+    background: rgba(220, 228, 243, .7);
+    box-shadow: var(--well)
 }
 
 .footbar a:focus-visible {
     outline: 3px solid var(--jade-ink);
-    outline-offset: 3px
+    outline-offset: 2px
 }
 
 /* ---------- sound control, bottom left ---------- */
@@ -2177,19 +2195,20 @@ body.lock .up {
         white-space: normal
     }
 
+    /* 小屏默认只显示公司名称，点击后由 max-height 展开正文，收起时完全裁掉内容避免溢出 */
     .bodywrap {
         position: static;
-        display: grid;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows .44s var(--ease)
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .44s var(--ease)
     }
 
     .stave.open .bodywrap {
-        grid-template-rows: 1fr
+        max-height: 46rem
     }
 
     .bodywrap>.body {
-        overflow: hidden;
         min-width: 0;
         width: auto;
         height: auto;
@@ -2200,6 +2219,7 @@ body.lock .up {
         transition: none;
     }
 
+    /* 标题已在 spine 中展示，展开区不再重复图标与标题 */
     .body h3,
     .body .tile {
         display: none
@@ -2269,6 +2289,15 @@ body.lock .up {
         border-radius: 26px;
         justify-content: center;
         text-align: center
+    }
+
+    /* 窄屏改为整体居中，版权与链接都靠中间排列 */
+    .footbar p {
+        margin-right: 0
+    }
+
+    .footbar a {
+        padding: 7px 8px
     }
 
     .sfx {
@@ -2410,9 +2439,7 @@ html[data-theme="dark"] .disc {
     box-shadow: 0 18px 28px -16px rgba(0, 0, 0, .9), inset 2px 3px 4px rgba(255, 255, 255, .08), inset -3px -5px 10px rgba(0, 0, 0, .5)
 }
 
-html[data-theme="dark"] .quote.tint {
-    background: linear-gradient(158deg, #1C2A2A, #182522 48%, #142019)
-}
+/* 暗色下 quote.tint 不再使用偏绿的底色，直接沿用 .quote 的通用暗色渐层 */
 
 html[data-theme="dark"] .plan.hot {
     background: linear-gradient(158deg, #22302E, #1B2825 50%, #16211F);
@@ -2429,7 +2456,8 @@ html[data-theme="dark"] .footbar {
 }
 
 /* 导航悬停底色、步骤虚线、遮罩、音量波纹在暗色下的等效值 */
-html[data-theme="dark"] .nav a:hover {
+html[data-theme="dark"] .nav a:hover,
+html[data-theme="dark"] .footbar a:hover {
     background: rgba(255, 255, 255, .07)
 }
 
@@ -2454,7 +2482,7 @@ html[data-theme="dark"] .tile {
 }
 
 /* 主题切换按钮：暗色模式下呈现鼠标按下时的凹陷样式 */
-html[data-theme="dark"] .theme-toggle {
+/* html[data-theme="dark"] .theme-toggle {
     background-image: var(--sheen-soft), var(--gloss-jade-down);
     box-shadow: 0 1px 2px -1px rgba(20, 80, 62, .4), inset 0 2px 6px 0 rgba(14, 58, 46, .34);
     transform: translateY(1px)
@@ -2464,14 +2492,12 @@ html[data-theme="dark"] .theme-toggle:hover {
     background-position: 0 0;
     box-shadow: 0 1px 2px -1px rgba(20, 80, 62, .4), inset 0 2px 6px 0 rgba(14, 58, 46, .34);
     transform: translateY(1px)
-}
+} */
 
-/* 窄屏头部原本隐藏 .top .btn，这里让主题切换按钮保持可见 */
+/* 小屏下页头主题按钮隐藏，改用抽屉菜单里的主题按钮，避免头部拥挤 */
 @media (max-width:1000px) {
     .top .theme-toggle {
-        display: inline-flex;
-        padding: 10px 15px;
-        font-size: .84rem
+        display: none
     }
 
     html[data-theme="dark"] .bar {
@@ -2479,9 +2505,31 @@ html[data-theme="dark"] .theme-toggle:hover {
     }
 }
 
-@media (max-width:380px) {
-    .top .theme-toggle {
-        padding: 9px 12px;
-        font-size: .76rem
-    }
+/* ---------- 主题切换过渡 ---------- */
+/* 关闭 View Transitions 默认的整页淡入淡出，改由 JS 以按钮为圆心做圆形扩散 */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal
+}
+
+::view-transition-old(root) {
+    z-index: 1
+}
+
+::view-transition-new(root) {
+    z-index: 2
+}
+
+/* 不支持 View Transitions 的浏览器：切换瞬间临时开启颜色 / 阴影过渡，避免硬切 */
+html.theme-fading,
+html.theme-fading *,
+html.theme-fading *::before,
+html.theme-fading *::after {
+    transition: background-color .42s var(--ease),
+                border-color .42s var(--ease),
+                color .42s var(--ease),
+                fill .42s var(--ease),
+                stroke .42s var(--ease),
+                box-shadow .42s var(--ease) !important
 }

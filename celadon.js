@@ -21,21 +21,29 @@
     /* ---------- theme switch ---------- */
     /* 主题初始值已在 <head> 的内联脚本中写入 html[data-theme]，
        这里负责按钮状态同步与点击切换，用户选择会持久化到 localStorage */
-    var themeBtn = document.getElementById("themeToggle");
+    /* 页头与抽屉里的两个主题按钮共用同一套状态同步逻辑 */
+    var themeBtns = [
+        document.getElementById("themeToggle"),
+        document.getElementById("drawerTheme")
+    ].filter(function(el) {
+        return !!el;
+    });
 
     /**
-     * 应用主题：写入 html[data-theme]，并同步按钮文字与无障碍属性
+     * 应用主题：写入 html[data-theme]，并同步所有主题按钮的文字与无障碍属性
      * @param {string} theme - "light" 或 "dark"
      */
     function applyTheme(theme) {
         html.setAttribute("data-theme", theme);
-        if (!themeBtn) return;
         var dark = theme === "dark";
-        themeBtn.textContent = dark ? "暗色模式" : "亮色模式";
-        themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+        var text = dark ? "暗色模式" : "亮色模式";
         var label = dark ? "切换到亮色模式" : "切换到暗色模式";
-        themeBtn.setAttribute("aria-label", label);
-        themeBtn.setAttribute("title", label);
+        themeBtns.forEach(function(btn) {
+            btn.textContent = text;
+            btn.setAttribute("aria-pressed", dark ? "true" : "false");
+            btn.setAttribute("aria-label", label);
+            btn.setAttribute("title", label);
+        });
     }
 
     /**
@@ -46,23 +54,92 @@
         return html.getAttribute("data-theme") === "dark" ? "dark" : "light";
     }
 
-    if (themeBtn) {
-        applyTheme(currentTheme());
-        themeBtn.addEventListener("click", function() {
-            var next = currentTheme() === "dark" ? "light" : "dark";
+    /**
+     * 保存主题选择到本地存储
+     * @param {string} theme - "light" 或 "dark"
+     */
+    function persistTheme(theme) {
+        try {
+            localStorage.setItem("theme", theme);
+        } catch (e) {}
+    }
+
+    /**
+     * 计算从圆心铺满整个视口所需的半径
+     * @param {number} x - 圆心横坐标（视口坐标）
+     * @param {number} y - 圆心纵坐标（视口坐标）
+     * @returns {number} 覆盖视口四个角的最大距离
+     */
+    function revealRadius(x, y) {
+        var dx = Math.max(x, window.innerWidth - x);
+        var dy = Math.max(y, window.innerHeight - y);
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    /**
+     * 带过渡动画地切换主题
+     * 优先使用 View Transitions API，以按钮为圆心做圆形扩散揭示新主题；
+     * 浏览器不支持或用户偏好减弱动效时，退化为颜色渐变过渡 / 直接切换
+     * @param {string} next - 目标主题 "light" 或 "dark"
+     * @param {Element} [origin] - 动画圆心所在元素，通常为主题切换按钮
+     */
+    function switchTheme(next, origin) {
+        var canViewTransition = typeof document.startViewTransition === "function";
+        if (reduce || !canViewTransition) {
+            if (!reduce) {
+                // 退化方案：临时开启全局颜色 / 阴影过渡，让换色不是硬切
+                html.classList.add("theme-fading");
+            }
             applyTheme(next);
-            try {
-                localStorage.setItem("theme", next);
-            } catch (e) {}
+            persistTheme(next);
+            if (!reduce) {
+                window.setTimeout(function() {
+                    html.classList.remove("theme-fading");
+                }, 420);
+            }
+            return;
+        }
+
+        var rect = origin ? origin.getBoundingClientRect() : null;
+        var x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+        var y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
+        var radius = revealRadius(x, y);
+
+        var transition = document.startViewTransition(function() {
+            applyTheme(next);
+            persistTheme(next);
+        });
+
+        // 在新主题的快照上执行圆形扩散裁剪动画
+        transition.ready.then(function() {
+            document.documentElement.animate(
+                {
+                    clipPath: [
+                        "circle(0px at " + x + "px " + y + "px)",
+                        "circle(" + radius + "px at " + x + "px " + y + "px)"
+                    ]
+                },
+                {
+                    // 动画持续时间
+                    duration: 2200,
+                    easing: "cubic-bezier(.45, 0, .25, 1)",
+                    pseudoElement: "::view-transition-new(root)"
+                }
+            );
+        }).catch(function() {});
+    }
+
+    if (themeBtns.length) {
+        applyTheme(currentTheme());
+        themeBtns.forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                var next = currentTheme() === "dark" ? "light" : "dark";
+                switchTheme(next, btn);
+            });
         });
     }
 
     /* ---------- inline chip icons ---------- */
-    /* <img src="xxx.svg"> 里的 SVG 是独立 document，外部 CSS 管不了 fill。
-       这里 fetch 每个 SVG 文件、DOM 解析、给缺失 fill 的 path 补 fill="currentColor"，
-       然后内联注入。这样就能用 CSS 的 color 统一控制图标颜色，深浅主题自动切换。
-       规则：只在 fill 缺失 / 空字符串 / "none" 时补 currentColor，绝不覆盖已有 fill，
-       保持 SVG 原生的多彩表达（如果将来有品牌色图标也不会被强制单色化）。 */
     (function inlineChipIcons() {
         var holders = document.querySelectorAll(".chip-ico[data-src]");
         if (!holders.length) return;
@@ -913,52 +990,6 @@
         }
         measure();
     }
-
-    /* ---------- random quote palette ---------- */
-    /**
-     * 为每张 article.quote 生成一组协调的随机配色，通过 CSS 变量注入。
-     * 使用 HSL 色彩空间保证：
-     *   - 卡片背景统一偏亮（L 83%-97%），保持整体页面明亮基调
-     *   - accent（face / dot / icon）与背景同色相，L 差拉开形成渐变层次
-     *   - 同一 article 内的所有装饰元素共享同一色相，保证卡片视觉统一
-     */
-    (function randomizeQuotePalette() {
-        var quotes = document.querySelectorAll(".quote");
-        if (!quotes.length) return;
-
-        /** 生成 [min, max] 范围内的随机数 */
-        function rand(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-
-        /** 把 HSL 三元组序列化成 hsl() CSS 字符串 */
-        function hsl(h, s, l) {
-            return "hsl(" + h.toFixed(1) + "," + s.toFixed(1) + "%," + l.toFixed(1) + "%)";
-        }
-
-        var count = quotes.length;
-        // 把色相环 360° 均匀分给每张卡片，保证相邻卡片颜色差异足够大
-        // 再加 ±15° 小抖动避免色调排布过于机械
-        for (var i = 0; i < count; i++) {
-            var card = quotes[i];
-            // 基础色相：沿 360° 均匀分布，加少量随机抖动
-            var baseHue = (360 / count) * i;
-            var hue = (baseHue + rand(-15, 15) + 360) % 360;
-            var sat = rand(30, 50);
-
-            // 卡片背景：三层渐变，L 整体上移，制造近乎白的淡色底色
-            card.style.setProperty("--q-bg-a", hsl(hue, Math.max(sat - 12, 12), rand(95, 98)));
-            card.style.setProperty("--q-bg-b", hsl(hue, sat, rand(91, 95)));
-            card.style.setProperty("--q-bg-c", hsl(hue, sat, rand(87, 91)));
-
-            // accent 渐变（.face / .co i 的背景）：同色相，L 整体上移，保持柔和
-            card.style.setProperty("--q-accent-a", hsl(hue, sat, rand(78, 86)));
-            card.style.setProperty("--q-accent-b", hsl(hue, Math.min(sat + 8, 65), rand(62, 72)));
-
-            // groove：比卡片背景稍暗，保持 sunk 凹陷效果，但 L 上移
-            card.style.setProperty("--q-groove", hsl(hue, Math.max(sat - 8, 12), rand(86, 92)));
-        }
-    })();
 
     /* ---------- delegated interface voices ---------- */
     window.addEventListener("click", function(e) {
